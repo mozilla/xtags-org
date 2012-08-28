@@ -16,8 +16,7 @@ nav.actions button {
 }
 
 #tags {
-	position: relative;
-	z-index: 1;
+	margin-top: 40px;
 }
 
 span[feature] {
