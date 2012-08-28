@@ -1,7 +1,6 @@
 
 body
 {
-	padding-top: 80px;
 	font-family: Segoe UI, Trebuchet MS, Helvetica, Arial;
 	font-size: 14px;
 	background: url(../images/spatter.jpg);
@@ -96,7 +95,6 @@ button code {
 }
 
 body > header {
-	position: fixed;
 	top: 0;
 	left: 0;
 	height: 46px;
@@ -109,12 +107,11 @@ body > header {
 	-moz-box-shadow: 0 1px 4px -2px #000;
 	-webkit-box-shadow: 0 1px 4px -2px #000;
 	opacity: 0.95;
-	z-index: 2;
 }
 
 body > header > iframe, body > header > a {
 	float: right;
-	margin-top: 13px;
+	margin-top: 15px;
 }
 
 .anchor-id {
@@ -144,71 +141,16 @@ body > header > iframe, body > header > a {
     margin: 0 2px;
 }
 
-#global_menu {
-	position: relative;
-	float: right;
-	padding: 16px 20px 22px 20px;
-}
-
-#global_menu > a {
-	display: block;
-	margin-left: 18px;
-	color: #fff;
-	font-size: 23px;
-	font-weight: bold;
-	text-decoration: none;
-	line-height: 0;
-}
-
-#global_menu > a:first-child {
-	margin-left: 0;
-}
-
-#global_menu > a div {
-    position: relative;
-}
-
-#global_menu > a div:last-child {
-    top: 8px;
-}
-
 #global_nav {
-	display: none;
-	position: absolute;
-	top: 100%;
-	right: 20px;
-	width: 175px;
-	background: #fff;
-	border: 1px solid;
-	border-color: #0E56A9;
-	border-radius: 3px;
-	-ms-border-radius: 3px;
-	-moz-border-radius: 3px;
-	-webkit-border-radius: 3px;
-	box-shadow: 0 1px 7px -2px #000;
-	-ms-box-shadow: 0 1px 7px -2px #000;
-	-moz-box-shadow: 0 1px 7px -2px #000;
-	-webkit-box-shadow: 0 1px 7px -2px #000;
+	float: right;
+	margin-top: 17px;
+	margin-right: 25px;
 }
-
-#global_nav.small-nav {
-	width: 90px;
-}
-
 #global_nav a {
-	display: block;
-	padding: 0 8px 6px;
-	text-decoration: none;
-	color: #466EA6;
+	color: ghostwhite;
 	font-weight: bold;
-}
-
-#global_nav a:hover {
-	text-decoration: underline;
-}
-
-#global_menu:hover #global_nav {
-	display: block;
+	text-decoration: none;
+	margin-right:10px;
 }
 
 
@@ -264,6 +206,7 @@ div.max-width > dl > dd:last-child p:last-child {
 }
 
 #tag_line {
+	margin-top: 40px;
 	position: relative;
 	margin-bottom: 50px;
     padding-bottom: 20px;
