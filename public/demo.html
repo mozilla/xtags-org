@@ -165,26 +165,26 @@
 		</nav>
 		
 		<x-accordion id="accordion_demo" class="style">
-			<x-toggler selected="true">Toggler 1</x-toggler>
-			<div>
+			<h2 selected="true">Toggler 1</h2>
+			<section>
 				<p>
 					Tabboxes are great for showing users only the content they need to see, while providing users an easy way to access additional content on-demand
 				</p>
-			</div>
+			</section>
 			
-			<x-toggler>Toggler 2</x-toggler>
-			<div>
+			<h2>Toggler 2</h2>
+			<section>
 				<p>
 					Examples of use-cases for tabboxes include: a set of step-wise directions, grouping like content elements together, or as a building block for a tabbed viewing interface in a mobile web app.
 				</p>
-			</div>
+			</section>
 			
-			<x-toggler>Toggler 3</x-toggler>
-			<div>
+			<h2>Toggler 3</h2>
+			<section>
 				<p>
 					In short, tabboxes are pretty freaking cool, and when you pair them with CSS animations/transitions, you can do things with a few styles that used to take a ton of JavaScript and custom code.
 				</p>
-			</div>
+			</section>
 		</x-accordion>
 <h4>The Markup:</h4>
 <pre>
@@ -382,34 +382,34 @@
 				<x-action 
 					command="new-content" 
 					label="New" 
-					src="demo/images/action_icons/light/medium/plus.png">
+					icon="demo/images/action_icons/light/medium/plus.png">
 				</x-action>
 				<x-action 
 					command="refresh-content" 
 					label="Refresh" 
-					src="demo/images/action_icons/light/medium/refresh.png">
+					icon="demo/images/action_icons/light/medium/refresh.png">
 				</x-action>
 				<x-action 
 					command="gridify-content" 
 					label="Grid" 
-					src="demo/images/action_icons/light/medium/grid.png">
+					icon="demo/images/action_icons/light/medium/grid.png">
 				</x-action>
 				<x-action 
 					for="more-actions" 
 					command="action-4" 
 					label="4th Action" 
-					src="demo/images/action_icons/light/medium/grid.png">
+					icon="demo/images/action_icons/light/medium/grid.png">
 				</x-action>
 				<x-action 
 					for="more-actions" 
 					command="action-5" 
 					label="5th Action" 
-					src="demo/images/action_icons/light/medium/grid.png">
+					icon="demo/images/action_icons/light/medium/grid.png">
 				</x-action>
 				<x-action 
 					group="more-actions" 
 					label="More" 
-					src="demo/images/action_icons/light/medium/more-actions.png">
+					icon="demo/images/action_icons/light/medium/more-actions.png">
 				</x-action>
 			</x-actionbar>
 
@@ -464,7 +464,7 @@
 		document.getElementById('autosuggest_demo').dataready = function(request){
 			if (!request.responseText) return this;
 			request.responseText.movies.forEach(function(movie){
-				this.xtag.addSuggestion(movie.title, movie);
+				this.addSuggestion(movie.title, movie);
 			}, this);
 		};
 	
@@ -472,7 +472,7 @@
 	document.addEventListener('beforerequest', function(event){
 		var element = event.target;
 		if (element.tagName == 'X-AUTOSUGGEST'){
-			element.xtag.request.url = element.xtag.request.url + '&q=' + element.value;
+			element.request.url = element.request.url + '&q=' + element.value;
 		}
 	});
 
@@ -551,7 +551,7 @@
 					panel.innerHTML = 'This tabpanel was added dynamically, it shows when you click on the tab element above entitled "Tab ' + (demo.firstElementChild.children.length) + '"';
 					demo.lastElementChild.appendChild(panel);
 					
-					tab.xtag.selectTab();
+					tab.selectTab();
 					break;
 				
 				case 'tabPosition':
@@ -559,12 +559,12 @@
 					break;
 				
 				case 'previousTab':
-					demo.firstElementChild.xtag.previousTab();
+					demo.firstElementChild.previousTab();
 					break;
 					
 				case 'nextTab':
 
-					demo.firstElementChild.xtag.nextTab();
+					demo.firstElementChild.nextTab();
 					break;
 				
 				case 'addSection':
@@ -578,27 +578,27 @@
 					div.innerHTML = 'This panel was added dynamically, it shows when you click on the toggler element above entitled "Toggler ' + (length + 1) + '"';
 					demo.appendChild(div);
 					
-					toggler.xtag.selectToggler();
+					toggler.selectToggler();
 					break;
 				
 				case 'previousToggler':
-					demo.xtag.previousToggler();
+					demo.previousToggler();
 					break;
 					
 				case 'nextToggler':
-					demo.xtag.nextToggler();
+					demo.nextToggler();
 					break;
 					
 				case 'slideNext':			
-					demo.xtag.slideNext();
+					demo.slideNext();
 					break;
 
 				case 'slidePrevious':
-					demo.xtag.slidePrevious();
+					demo.slidePrevious();
 					break;
 
 				case 'slideTo':
-					demo.xtag.slideTo(2);
+					demo.slideTo(2);
 					break;
 				case 'slideOrientation':
 					demo['data-orientation'] = demo.getAttribute('data-orientation') == 'x' ? 'y' : 'x';

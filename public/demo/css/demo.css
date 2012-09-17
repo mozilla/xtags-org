@@ -239,10 +239,11 @@ span[feature="data-bound"] {
 		text-shadow: 0 1px 0 #fff;
 	}
 	
-	#accordion_demo.style x-toggler {
+	#accordion_demo.style h2 {
 		margin-top: 4px;
 		padding: 0 4px 2px;
 		border: 1px solid;
+		font-size: 87%;
 		border-color: #cacaca #afafaf #a0a0a0;
 		background: linear-gradient(top, #fafafa, #dadada);
 		background: -o-linear-gradient(top, #fafafa, #dadada);
@@ -257,7 +258,7 @@ span[feature="data-bound"] {
 		cursor: pointer;
 	}
 	
-	#accordion_demo.style x-toggler[selected="true"] {
+	#accordion_demo.style h2[selected="true"] {
 		color: #000;
 		background: linear-gradient(top, #EEF2F8, #CFDBEC);
 		background: -o-linear-gradient(top, #EEF2F8, #CFDBEC);
