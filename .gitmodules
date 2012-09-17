@@ -1,0 +1,3 @@
+[submodule "public/elements"]
+	path = public/elements
+	url = git@github.com:mozilla/x-tag-elements.git
