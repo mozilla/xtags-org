@@ -236,7 +236,7 @@ xtag.register('superinput', {
 	getters: {
 		value: function(){
 			// everything superinputs do has a little super mixed in ;)
-			return this.value + '  is super';
+			return this.dataset.value + '  is super';
 		}
 	}
 });
@@ -260,7 +260,7 @@ xtag.register('superinput', {
 		value: function(value){
 			// boy, these superinputs sure are loud little buggers.
 			alert(value);
-			this.value = value;
+			this.dataset.value = value;
 		}
 	}
 });
