@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8" />
+		
+		<title>X-Tag - Web Components Custom Element Polylib</title>
+		<link href="images/shortcut.png" rel="shortcut icon" type="image/x-icon" />
+		
+		<link rel="stylesheet" type="text/css" href="css/reset.css" />
+		<link rel="stylesheet" type="text/css" href="css/flex.css"/>
+		<link rel="stylesheet" type="text/css" href="css/layout.css"/>
+		<link rel="stylesheet" type="text/css" href="css/global.css"/>
+		<link rel="stylesheet" type="text/css" href="elements/slidebox/slidebox.css"/>
+		<link rel="stylesheet" type="text/css" href="ribbon/ribbon.css"/>
+		
+		<link type="text/css" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Righteous" />
+		
+		<script type="text/javascript" src="js/x-tag.js"></script>
+		<script type="text/javascript" src="elements/slidebox/slidebox.js"></script>
+		<script type="text/javascript" src="ribbon/ribbon.js"></script>
+	</head>
+
+<body>
+
+	<header id="header">
+	
+		<div id="global_nav">
+			<x-slidebox>
+				<x-slides>
+				
+					<x-slide>
+						<a>News</a>
+					</x-slide>
+					
+					<x-slide>
+						<a>Docs</a>
+					</x-slide>
+					
+					<x-slide id="nav_logo" selected>
+						<span>&lt;</span>
+						<div>x</div>
+						<span>&gt;</span>
+					</x-slide>
+					
+					<x-slide>
+						<a>Registry</a>
+					</x-slide>
+					
+					<x-slide>
+						<a>About</a>
+					</x-slide>
+					
+				</x-slides>
+			</x-slidebox>
+		</div>
+		
+	</header>
+
+	<x-slidebox id="content_slidebox">
+		<x-slides>
+		
+			<x-slide>
+				<a>News</a>
+			</x-slide>
+			
+			<x-slide>
+				<a>Docs</a>
+			</x-slide>
+			
+			<x-slide selected>
+				<div class="limit">
+				
+					<h1 class="tagline">X-Tag - The Custom Elements Polylib</h1>
+					
+					<div id="intro" class="block">
+							
+						<x-ribbon>What is X-Tag?</x-ribbon>
+						
+						<div id="intro_graphic">
+							
+							<div id="intro_logo" class="foo">
+								<span>&lt;</span>
+								<div></div>
+								<span>&gt;</span>
+							</div>
+							
+							<div class="intro_details" id="intro_webcomponents">
+								<img src="images/webcomponents.png" onload="introAnimation()" />
+							</div>
+							
+							<div class="intro_details" id="intro_browsers">
+								<img src="images/browsers.png" onload="introAnimation()" />
+							</div>
+						</div>
+						
+						<h2>
+							X-Tag is a small JavaScript library, created and supported by Mozilla, that brings 
+							Web Components Custom Element capabilities to all modern browsers.
+						</h2>
+						
+					</div>
+					
+					<div class="block">
+						<x-ribbon>Get the code</x-ribbon>
+						<div id="code_options" class="unlink">
+							<div>
+								<a id="download" href="https://github.com/mozilla/x-tag/archive/master.zip">
+									<img src="images/archive.png">
+									<div>
+										Download it
+										<span>8k compressed</span>
+									</div>
+								</a>
+							</div>
+							
+							<div>
+								<a id="fork" href="https://github.com/mozilla/x-tag">
+									<img src="images/github-logo.png">
+									<div>
+										Fork it
+										<span>on Github</span>
+									</div>
+								</a>
+							</div>
+							
+							<div>
+								<a id="registry_elements">
+									<img src="images/xtr.png">
+									<div>
+										Get tags
+										<span>view the Registry</span>
+									</div>
+								</a>
+							</div>
+						</div>
+					</div>
+					
+					<div class="block">
+						<x-ribbon>Razzle-Dazzle</x-ribbon>
+						
+						<dl>
+							<dt text="Toggle Switch"></dt>
+							<dd>
+							
+							</dd>
+							
+							<dt text="Slidebox"></dt>
+							<dd>
+							
+							</dd>
+							
+							<dt text="Leaflet Map"></dt>
+							<dd>
+							
+							</dd>
+						</dl>
+					</div>
+					
+				</div>
+			</x-slide>
+			
+			<x-slide>
+				<a>Registry</a>
+			</x-slide>
+			
+			<x-slide>
+				<a>About</a>
+			</x-slide>
+			
+		</x-slides>
+	</x-slidebox>
+
+</body>
+
+<script type="text/javascript">
+	
+	introImageLoads = 0;
+	introAnimation = function(){
+		introImageLoads++;
+		if (introImageLoads == 2) {
+			setTimeout(function(){
+				document.getElementById('intro_graphic').className = 'animate-intro';
+				setTimeout(function(){
+					document.querySelector('#intro_logo div').className = 'switch-logo-x';
+					document.getElementById('intro_graphic').className = 'animate-intro fade-intro';
+				}, 300);
+			}, 1000);
+		}
+	}
+	
+	slidePage = function(index){
+		document.querySelector('#global_nav x-slidebox').slideTo(index);
+		document.getElementById('content_slidebox').slideTo(index);
+	}
+	
+	xtag.addEvents(document, {
+		'click:touch:delegate(#global_nav x-slide)': function(e){
+			var index = Array.prototype.indexOf.call(this.parentNode.children, this);
+			slidePage(index);
+		},
+		'click:touch:delegate(#registry_elements)': function(){
+			slidePage(3);
+		}
+	});
+	
+</script>
+
+</html>

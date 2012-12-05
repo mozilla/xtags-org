@@ -1,0 +1,28 @@
+x-ribbon {
+	float: left;
+	display: block;
+	position: relative;
+	margin: 0 0 10px;
+	padding: 4px 6px;
+	color: #FFFFFF;
+	background: #666;
+}
+
+x-ribbon:after {
+	content: " ";
+	display: block;
+	position: absolute;
+	top: 100%;
+	left: 0;
+	width: 0; 
+	height: 0; 
+	border-top: 10px solid #333;
+	border-left: 10px solid transparent;
+}
+
+x-ribbon[wrap-direction="right"]:after {
+	left: auto;
+	right: 0;
+	border-left: none;
+	border-right: 10px solid transparent;
+}
