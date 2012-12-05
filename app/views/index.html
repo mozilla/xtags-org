@@ -29,25 +29,40 @@
 			<x-slidebox>
 				<x-slides>
 				
-					<x-slide>
+					<x-slide
+					{% if url == "/news" %}
+						selected
+					{% endif %}>
 						<a>News</a>
 					</x-slide>
 					
-					<x-slide>
+					<x-slide
+					{% if url == "/docs" %}
+						selected
+					{% endif %}>
 						<a>Docs</a>
 					</x-slide>
 					
-					<x-slide id="nav_logo" selected>
+					<x-slide id="nav_logo" 
+					{% if url == "/" %}
+						selected
+					{% endif %}>
 						<span>&lt;</span>
 						<div>x</div>
 						<span>&gt;</span>
 					</x-slide>
 					
-					<x-slide>
+					<x-slide 
+					{% if url == "/registry" %}
+						selected
+					{% endif %}>
 						<a>Registry</a>
 					</x-slide>
 					
-					<x-slide>
+					<x-slide
+					{% if url == "/about" %}
+						selected
+					{% endif %}>
 						<a>About</a>
 					</x-slide>
 					
@@ -60,15 +75,24 @@
 	<x-slidebox id="content_slidebox">
 		<x-slides>
 		
-			<x-slide>
+			<x-slide
+				{% if url == "/news" %}
+						selected
+					{% endif %}>
 				<a>News</a>
 			</x-slide>
 			
-			<x-slide>
+			<x-slide
+				{% if url == "/docs" %}
+						selected
+					{% endif %}>
 				<a>Docs</a>
 			</x-slide>
 			
-			<x-slide selected>
+			<x-slide
+				{% if url == "/" %}
+						selected
+					{% endif %}>
 				<div class="limit">
 				
 					<h1 class="tagline">X-Tag - The Custom Elements Polylib</h1>
@@ -160,11 +184,17 @@
 				</div>
 			</x-slide>
 			
-			<x-slide>
+			<x-slide
+				{% if url == "/registry" %}
+					selected
+				{% endif %}>
 				<a>Registry</a>
 			</x-slide>
 			
-			<x-slide>
+			<x-slide
+				{% if url == "/about" %}
+					selected
+				{% endif %}>
 				<a>About</a>
 			</x-slide>
 			
