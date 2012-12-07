@@ -12,14 +12,15 @@
 		<link rel="stylesheet" type="text/css" href="css/layout.css"/>
 		<link rel="stylesheet" type="text/css" href="css/global.css"/>
 		<link rel="stylesheet" type="text/css" href="elements/slidebox/slidebox.css"/>
+		<link rel="stylesheet" type="text/css" href="elements/panel/panel.css"/>
 		<link rel="stylesheet" type="text/css" href="ribbon/ribbon.css"/>
 		
 		<link type="text/css" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Righteous" />
 		
 		<script type="text/javascript" src="js/x-tag.js"></script>
 		<script type="text/javascript" src="elements/slidebox/slidebox.js"></script>
+		<script type="text/javascript" src="elements/panel/panel.js"></script>
 		<script type="text/javascript" src="ribbon/ribbon.js"></script>
-		{% block head %}{% endblock %}
 	</head>
 
 <body>
@@ -30,25 +31,25 @@
 			<x-slidebox>
 				<x-slides>
 				
-					<x-slide>
-						<a>News</a>
+					<x-slide {% if page == "blog" %}selected{% endif %}>
+						<a>Blog</a>
 					</x-slide>
 					
-					<x-slide>
+					<x-slide {% if page == "docs" %}selected{% endif %}>
 						<a>Docs</a>
 					</x-slide>
 					
-					<x-slide id="nav_logo" selected>
+					<x-slide id="nav_logo" {% if page == "index" %}selected{% endif %}>
 						<span>&lt;</span>
 						<div>x</div>
 						<span>&gt;</span>
 					</x-slide>
 					
-					<x-slide>
+					<x-slide {% if page == "registry" %}selected{% endif %}>
 						<a>Registry</a>
 					</x-slide>
 					
-					<x-slide>
+					<x-slide {% if page == "about" %}selected{% endif %}>
 						<a>About</a>
 					</x-slide>
 					
@@ -61,112 +62,34 @@
 	<x-slidebox id="content_slidebox">
 		<x-slides>
 		
-			<x-slide>
-				<a>News</a>
+			<x-slide name="blog" {% if page == "blog" %}selected{% endif %}>
+				<x-panel>
+					{% block blog %}{% endblock %}
+				</x-panel>
 			</x-slide>
 			
-			<x-slide>
-				<a>Docs</a>
+			<x-slide name="docs" {% if page == "docs" %}selected{% endif %}>
+				<x-panel>
+					{% block docs %}{% endblock %}
+				</x-panel>
 			</x-slide>
 			
-			<x-slide selected>
-				<div class="limit">
-				
-					<h1 class="tagline">X-Tag - The Custom Elements Polylib</h1>
-					
-					<div id="intro" class="block">
-							
-						<x-ribbon>What is X-Tag?</x-ribbon>
-						
-						<div id="intro_graphic">
-							
-							<div id="intro_logo" class="foo">
-								<span>&lt;</span>
-								<div></div>
-								<span>&gt;</span>
-							</div>
-							
-							<div class="intro_details" id="intro_webcomponents">
-								<img src="images/webcomponents.png" onload="introAnimation()" />
-							</div>
-							
-							<div class="intro_details" id="intro_browsers">
-								<img src="images/browsers.png" onload="introAnimation()" />
-							</div>
-						</div>
-						
-						<h2>
-							X-Tag is a small JavaScript library, created and supported by Mozilla, that brings 
-							Web Components Custom Element capabilities to all modern browsers.
-						</h2>
-						
-					</div>
-					
-					<div class="block">
-						<x-ribbon>Get the code</x-ribbon>
-						<div id="code_options" class="unlink">
-							<div>
-								<a id="download" href="https://github.com/mozilla/x-tag/archive/master.zip">
-									<img src="images/archive.png">
-									<div>
-										Download it
-										<span>8k compressed</span>
-									</div>
-								</a>
-							</div>
-							
-							<div>
-								<a id="fork" href="https://github.com/mozilla/x-tag">
-									<img src="images/github-logo.png">
-									<div>
-										Fork it
-										<span>on Github</span>
-									</div>
-								</a>
-							</div>
-							
-							<div>
-								<a id="registry_elements">
-									<img src="images/xtr.png">
-									<div>
-										Get tags
-										<span>view the Registry</span>
-									</div>
-								</a>
-							</div>
-						</div>
-					</div>
-					
-					<div class="block">
-						<x-ribbon>Razzle-Dazzle</x-ribbon>
-						
-						<dl>
-							<dt text="Toggle Switch"></dt>
-							<dd>
-							
-							</dd>
-							
-							<dt text="Slidebox"></dt>
-							<dd>
-							
-							</dd>
-							
-							<dt text="Leaflet Map"></dt>
-							<dd>
-							
-							</dd>
-						</dl>
-					</div>
-					
-				</div>
+			<x-slide name="" {% if page == "index" %}selected{% endif %}>
+				<x-panel>
+					{% block index %}{% endblock %}
+				</x-panel>
 			</x-slide>
 			
-			<x-slide>
-				<a>Registry</a>
+			<x-slide name="registry" {% if page == "registry" %}selected{% endif %}>
+				<x-panel>
+					{% block registry %}{% endblock %}
+				</x-panel>
 			</x-slide>
 			
-			<x-slide>
-				<a>About</a>
+			<x-slide name="about" {% if page == "about" %}selected{% endif %}>				
+				<x-panel>
+					{% block about %}{% endblock %}
+				</x-panel>
 			</x-slide>
 			
 		</x-slides>
@@ -191,6 +114,10 @@
 	}
 	
 	slidePage = function(index){
+		var slide = document.querySelectorAll('#content_slidebox x-slide')[index];		
+		if (slide.firstElementChild.children.length == 0){
+			slide.firstElementChild.src = "/" + slide.getAttribute('name');
+		}
 		document.querySelector('#global_nav x-slidebox').slideTo(index);
 		document.getElementById('content_slidebox').slideTo(index);
 	}

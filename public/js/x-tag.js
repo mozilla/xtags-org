@@ -1,22 +1,15 @@
 (function(){
   
-  var doc = document,
-    win = window,
-    head = doc.getElementsByTagName('head')[0];
+  var head = document.getElementsByTagName('head')[0];
 
-
-  function nodeInserted(element, extendChildren){
-    if (extendChildren && xtag.tagList.length && element.childNodes.length){
-        xtag.query(element, xtag.tagList).forEach(function(element){
-        nodeInserted(element);
+  var nodeInserted = function(element, query){
+    if (query && element.childNodes.length){ 
+      xtag.query(element, xtag.tagList).forEach(function(element){ 
+        nodeInserted(element) 
       });
     }
-    if (xtag.tagCheck(element)){
-      xtag.extendElement(element);
-      if (doc.documentElement.contains(element)){
-        xtag.getOptions(element).onInsert.call(element);
-      } 
-    }
+    xtag.extendElement(element, true);
+    if (element.parentNode) xtag.getOptions(element).onInsert.call(element);
   };
 
   /**
@@ -41,14 +34,15 @@
   * }
   */
   var prefix = (function() {
-    var styles = win.getComputedStyle(doc.documentElement, '');
+    var styles = window.getComputedStyle(document.documentElement, '');
+    
     var pre = (
         Array.prototype.slice
         .call(styles)
         .join('')
-        .match(/moz-|webkit-|ms-/) || (styles.OLink === '' && ['o'])
-      )[0].slice(0, -1);
-	  
+        .match(/moz|webkit|ms/) || (styles.OLink===''&&['o'])
+      )[0];
+
     var dom = ('WebKit|Moz|MS|O')
         .match(new RegExp('(' + pre + ')', 'i'))[1];
 
@@ -71,7 +65,7 @@
   * specified in the `source` parameter.
   * @return {object}
   */
-  function mergeOne(source, key, current){
+  var  mergeOne = function(source, key, current){
     switch (xtag.typeOf(current)){
       case 'object':
         if (xtag.typeOf(source[key]) == 'object'){
@@ -111,18 +105,15 @@
     click: 'touchend'
   };
   
-  var xtag = {
+  xtag = {
     tags: {},
     tagList: [],
     callbacks: {},
     prefix: prefix,
-    anchor: doc.createElement('a'),
-    mutation: win.MutationObserver || 
-      win.WebKitMutationObserver || 
-      win.MozMutationObserver,
-	_matchSelector: document.documentElement.matchesSelector ||
-	  document.documentElement.mozMatchesSelector || 
-      document.documentElement.webkitMatchesSelector, 
+    anchor: document.createElement('a'),
+    mutation: window.MutationObserver || 
+      window.WebKitMutationObserver || 
+      window.MozMutationObserver,
     tagOptions: {
       content: '',
       mixins: [],
@@ -133,7 +124,14 @@
       onCreate: function(){},
       onInsert: function(){}
     },
-
+    /**
+    * Calls the function in `fn` when the string in `value` contains an event
+    * key code that matches a triggered event.
+    *
+    * @param {function} fn The function to call.
+    * @param {string} value String containing the event key code.
+    * @param {string} pseudo
+    */
     eventMap: {
       animationstart: [
         'animationstart', 
@@ -147,16 +145,17 @@
         'MSTransitionEnd', 
         'webkitTransitionEnd'
       ], 
-      tap: [ 'ontouchend' in doc ? 'touchend' : 'mouseup']
+      tap: [ 'ontouchend' in document ? 'touchend' : 'mouseup']
     },
     pseudos: {
       delegate: {
         listener: function(pseudo, fn, args){
-		  var target = args[0].target,
-		      delegate = xtag.query(this.parentNode || this, pseudo.value).filter(function(node){
-	            return node == target || node.contains ? node.contains(target) : false;
-	          })[0];
-          return delegate ? fn.apply(delegate, args) : false;
+          var target = xtag.query(this, pseudo.value).filter(function(node){
+            return node == args[0].target || 
+              node.contains ? node.contains(args[0].target) : false;
+          })[0];
+          args.splice(args.length, 0, this);
+          return target ? fn.apply(target, args) : false;
         }
       },
       preventable: { 
@@ -169,9 +168,9 @@
           this.xtag.attributeSetters = this.xtag.attributeSetters || {};
           this.xtag.attributeSetters[pseudo.value] = pseudo.key.split(':')[0];
         },
-        listener: function(pseudo, fn, args){
-          fn.call(this, args[0]);
-          this.setAttribute(pseudo.value, args[0], true);
+        listener: function(pseudo, fn, args){          
+          fn.call(this, args[0]);          
+          this.setAttribute(pseudo.value, args[0], true);          
         }
       },
       touch: {
@@ -207,19 +206,15 @@
     * });
     */
     mixins: {
-      request: {
-        onInsert: function(){
-          this.src = this.getAttribute('src');
-        },
+      request: {        
         getters: {
           dataready: function(){
             return this.xtag.dataready;
           }
         },
         setters: {
-          src: function(src){
+          'src:attribute': function(src){ 
             if (src){
-              this.setAttribute('src', src);
               xtag.request(this, { url: src, method: 'GET' });
             }
           },
@@ -266,7 +261,7 @@
       return !!~element.className.split(' ').indexOf(className);
     },
 
-    /**
+     /**
     * Adds the class to the specified element, existing classes will not
     * be overwritten.
     *
@@ -276,10 +271,9 @@
     */
     addClass: function(element, className){
       if (!xtag.hasClass(element, className)){
-        var names = element.className.split(' ')
-          .filter(function(item){ return item != "" });
-        names.push(className);
-        element.className = names.join(' ');
+        var name = element.className;
+        element.className = name[name.length-1] == ' ' || name.length == 0 ?
+          name + className : name + " " + className;
       } 
       return element;
     },
@@ -292,11 +286,7 @@
     * @return {element}
     */
     removeClass: function(element, className){
-      var names = element.className.split(' ')
-        .filter(function(item){ return item != "" }),
-        idx = names.indexOf(className);
-      if (idx>=0) names.splice(idx,1);
-      element.className = names.join(' ');
+      element.className = element.className.replace(className,'');
       return element;
     },
 
@@ -313,10 +303,6 @@
         xtag.addClass(element,className) : xtag.removeClass(element, className);
     },
     
-	matchSelector: function(element, selector){
-		return xtag._matchSelector.call(element, selector);
-	},
-	
     /**
     * Queries a set of child elements using a CSS selector.
     *
@@ -349,7 +335,7 @@
     * @param {string} value The value of the property.
     */
     defineProperty: function(element, property, accessor, value){
-      return doc.documentElement.__defineGetter__ ? 
+      return document.documentElement.__defineGetter__ ? 
         function(element, property, accessor, value){
           element['__define' + accessor[0].toUpperCase() + 
             'etter__'](property, value);
@@ -409,7 +395,7 @@
     * @return {boolean}
     */    
     tagCheck: function(element){
-      return element.nodeName ? xtag.tags[element.nodeName.toLowerCase()] : false;
+      return element.tagName ? xtag.tags[element.tagName.toLowerCase()] : false;
     },
     
     /**
@@ -434,9 +420,7 @@
       xtag.tagList.push(tag);
       xtag.tags[tag] = xtag.merge({ tagName: tag }, xtag.tagOptions, 
         xtag.applyMixins(options || {}));
-      if (xtag.domready) xtag.query(doc, tag).forEach(function(element){
-        nodeInserted(element);
-      });
+      if (xtag.domready) xtag.query(document, tag).forEach(nodeInserted);
     },
     
     /**
@@ -445,13 +429,12 @@
     *
     * @param {element} element The element to extend.
     */
-
-    extendElement: function(element){
-      if (!element.xtag && xtag.tagCheck(element)){
+    extendElement: function(element, insert){
+      if (!element.xtag){
         element.xtag = {}; // used as general storage
-        var options = options || xtag.getOptions(element);
+        var options = xtag.getOptions(element);
         for (var z in options.methods){
-          xtag.bindMethod(element, z, options.methods[z]);
+          xtag.bindMethods(element, z, options.methods[z]); 
         }
         for (var z in options.setters){
           xtag.applyAccessor(element, z, 'set', options.setters[z]);
@@ -459,26 +442,9 @@
         for (var z in options.getters){
           xtag.applyAccessor(element, z, 'get', options.getters[z]);
         }
-        xtag.addEvents(element, options.events);
+        xtag.addEvents(element, options.events, options.eventMap);
         if (options.content) element.innerHTML = options.content;
         options.onCreate.call(element);
-      }
-    },
-
-    /**
-    * Helper method to ensure x-tags that are inserted via innerHTML
-    * are inflated.  
-    *
-    * @param {element} element The element.
-    * @param {html} element The html to insert.
-    */
-    innerHTML: function(element, html){
-      element.innerHTML = html;
-      if (xtag.observer){
-        xtag.parseMutations(xtag.observer.takeRecords(), nodeInserted);
-      }
-      else {
-        nodeInserted(element);
       }
     },
 
@@ -490,7 +456,7 @@
     * method.
     * @param {function} method The method/function to bind to the element.
     */
-    bindMethod: function(element, key, method){
+    bindMethods: function(element, key, method){
       element[key] = function(){ 
         return method.apply(element, xtag.toArray(arguments)) 
       };
@@ -526,31 +492,20 @@
     applyPseudos: function(element, key, fn){
       var action = fn, onAdd = {};
       if (key.match(':')){
-
-        var split = key.split(':');
-        for (var i = split.length - 1; i > 0; i--) {
-
-          split[i].replace(/(\w*)(?:\(([^\)]*)\))?/, function(match, name, value){
-            var lastPseudo = action,
+        key.replace(/:(\w*)(?:\(([^\)]*)\))?/g, function(match, name, value){
+          var lastPseudo = action,
             pseudo = xtag.pseudos[name],
             split = {
               key: key, 
               name: name,
               value: value
             };
-
-            if (pseudo.onAdd) onAdd[name] = split;
-            action = function(e){
-              e.customElement = element;              
-              var args = xtag.toArray(arguments);
-              args[1] = element;
-              return pseudo.listener.apply(this, 
-                [split, lastPseudo, args]);
-            }
-          });
-
-        }
-
+          if (pseudo.onAdd) onAdd[name] = split;
+          action = function(){
+            return pseudo.listener.apply(element, 
+              [split, fn, xtag.toArray(arguments)]);
+          }
+        });
         for (var z in onAdd){
           xtag.pseudos[z].onAdd.call(element, onAdd[z], action);
         }
@@ -568,7 +523,7 @@
               name: name,
               value: value
             };
-          if (pseudo.onRemove) pseudo.onRemove.call(element, split, lastPseudo);
+          if (pseudo.onRemove) pseudo.onRemove.call(element, split, fn);
           
         });
       }
@@ -590,7 +545,7 @@
       }
       element.setAttribute('src', element.xtag.request.url);
       xtag.anchor.href = options.url;
-      if (xtag.anchor.hostname == win.location.hostname) {
+      if (xtag.anchor.hostname == window.location.hostname) {
         request = xtag.merge(new XMLHttpRequest(), request);
         request.onreadystatechange = function(){
           element.setAttribute('data-readystate', request.readyState);
@@ -620,7 +575,7 @@
           delete xtag.callbacks[callbackID];
           xtag.clearRequest(element);
         }
-        request.script = doc.createElement('script');
+        request.script = document.createElement('script');
         request.script.type = 'text/javascript';
         request.script.src = options.url = options.url + 
           (~options.url.indexOf('?') ? '&' : '?') + callbackKey + callbackID;
@@ -650,10 +605,10 @@
       }
       else if (req.abort) req.abort();
     },
-  
-    addEvent: function(element, type, fn){
+    
+    addEvent: function(element, type, fn, map){
       var eventKey = type.split(':')[0],
-        eventMap = xtag.eventMap[eventKey] || [eventKey];
+        eventMap = (map || xtag.eventMap || {})[eventKey] || [eventKey];    
       var wrapped = xtag.applyPseudos(element, type, fn);
       eventMap.forEach(function(name){
         element.addEventListener(name, 
@@ -662,13 +617,13 @@
       return wrapped;
     },
     
-    addEvents: function(element, events){
-      for (var z in events) xtag.addEvent(element, z, events[z]);
+    addEvents: function(element, events, map){
+      for (var z in events) xtag.addEvent(element, z, events[z], map);
     },
-  
+
     removeEvent: function(element, type, fn){
       var eventKey = type.split(':')[0],
-        eventMap = xtag.eventMap[eventKey] || [eventKey];   
+        eventMap = (xtag.eventMap || {})[eventKey] || [eventKey];   
       eventMap.forEach(function(name){
         element.removeEventListener(name, fn);
       });
@@ -676,90 +631,63 @@
     
     fireEvent: function(element, type, data, options){
       var options = options || {},
-      event = doc.createEvent('Event');
+      event = document.createEvent('Event');
       event.initEvent(type, 'bubbles' in options ? options.bubbles : true, 'cancelable' in options ? options.cancelable : true);
       element.dispatchEvent(xtag.merge(event, data));
-    },
-
-    parseMutations: function(mutations, fn) {
-      var added = [];
-      mutations.forEach(function(record){
-        var nodes = record.addedNodes, length = nodes.length;
-        for (i = 0; i < length && added.indexOf(nodes[i]) == -1; i++){
-          added.push(nodes[i]);
-          fn(nodes[i], true);
-        }
-      });
     },
     
     observe: function(element, fn){
       if (xtag.mutation){
-        var observer = new xtag.mutation(function(mutations) {
-          xtag.parseMutations(mutations, fn);
+        var mutation = new xtag.mutation(function(mutations) {
+          var added = [];
+          mutations.forEach(function(record){
+            var nodes = record.addedNodes, length = nodes.length;
+            for (i = 0; i < length && added.indexOf(nodes[i]) == -1; i++){
+              added.push(nodes[i]);
+              fn(nodes[i], true);
+            }
+          });
         });
-        observer.observe(element, {
+        mutation.observe(element, {
           subtree: true,
           childList: true,
           attributes: !true,
           characterData: false
         });
-        xtag.observer = observer;
       }
       else element.addEventListener('DOMNodeInserted', function(event){
-        fn(event.target, true);
+        fn(event.target);
       }, false);
     }
-
   };
-
-
+  
   var setAttribute = HTMLElement.prototype.setAttribute;
-  (win.HTMLUnknownElement || HTMLElement).prototype.setAttribute = function(attr, value, setter){
+  HTMLElement.prototype.setAttribute = function(attr, value, setter){
     if (!setter && this.xtag && this.xtag.attributeSetters){
       this[this.xtag.attributeSetters[attr]] = value;
     }
     setAttribute.call(this, attr, value);
   };
   
-  var createElement = doc.createElement;
-  doc.createElement = function(tag){
+  var createElement = document.createElement;
+  document.createElement = function(tag){
     var element = createElement.call(this, tag);
-    xtag.extendElement(element);
+    if (xtag.tagCheck(element)) xtag.extendElement(element);
     return element;
   };
-  
-  function init(){   
-    xtag.observe(doc.documentElement, nodeInserted);
-    if (xtag.tagList.length){
-      xtag.query(doc, xtag.tagList).forEach(function(element){
+    
+  document.addEventListener('DOMContentLoaded', function(event){
+    xtag.observe(document.documentElement, nodeInserted);
+    if (xtag.tagList[0]){ 
+      xtag.query(document, xtag.tagList).forEach(function(element){
         nodeInserted(element);
       });
     }
-    xtag.domready = true;    
-    xtag.fireEvent(doc, 'DOMComponentsLoaded');
-    xtag.fireEvent(doc, '__DOMComponentsLoaded__');    
-  }
+    xtag.domready = true;
+    xtag.fireEvent(document, 'DOMComponentsLoaded');
+    xtag.fireEvent(document, '__DOMComponentsLoaded__');
+  }, false);
   
-
-  if (doc.readyState == 'complete'){
-      init();
-  } 
-  else if (doc.readyState == 'interactive'){
-      doc.addEventListener('readystatechange', function(e){
-        init();
-      }); 
-  }
-  else {
-    doc.addEventListener('DOMContentLoaded', function(event){
-      init();
-    }, false);
-  }
-  
-  if (typeof define == 'function' && define.amd) {
-      define(xtag);
-  } 
-  else {
-      win.xtag = xtag;
-  }
+  if (typeof define == 'function' && define.amd) define(xtag);
   
 })();
