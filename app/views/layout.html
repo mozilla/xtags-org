@@ -31,9 +31,11 @@
 			<x-slidebox>
 				<x-slides>
 				
+					{# 
 					<x-slide {% if page == "blog" %}selected{% endif %}>
 						<a>Blog</a>
-					</x-slide>
+					</x-slide> 
+					#}
 					
 					<x-slide {% if page == "docs" %}selected{% endif %}>
 						<a>Docs</a>
@@ -45,13 +47,16 @@
 						<span>&gt;</span>
 					</x-slide>
 					
+					
 					<x-slide {% if page == "registry" %}selected{% endif %}>
 						<a>Registry</a>
 					</x-slide>
 					
+					{#
 					<x-slide {% if page == "about" %}selected{% endif %}>
 						<a>About</a>
 					</x-slide>
+					#}
 					
 				</x-slides>
 			</x-slidebox>
@@ -62,12 +67,14 @@
 	<x-slidebox id="content_slidebox">
 		<x-slides>
 		
+			{# 
 			<x-slide name="blog" {% if page == "blog" %}selected{% endif %}>
 				<x-panel>
 					{% block blog %}{% endblock %}
 				</x-panel>
 			</x-slide>
-			
+			#}
+
 			<x-slide name="docs" {% if page == "docs" %}selected{% endif %}>
 				<x-panel>
 					{% block docs %}{% endblock %}
@@ -79,19 +86,22 @@
 					{% block index %}{% endblock %}
 				</x-panel>
 			</x-slide>
+
 			
 			<x-slide name="registry" {% if page == "registry" %}selected{% endif %}>
 				<x-panel>
 					{% block registry %}{% endblock %}
 				</x-panel>
 			</x-slide>
-			
+
+			{#
 			<x-slide name="about" {% if page == "about" %}selected{% endif %}>				
 				<x-panel>
 					{% block about %}{% endblock %}
 				</x-panel>
 			</x-slide>
-			
+			#}
+
 		</x-slides>
 	</x-slidebox>
 
