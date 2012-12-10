@@ -15,8 +15,8 @@
       the element is injected into the DOM. Here's an example with some comments for a bit more clarity:
     </p>
       
-    <pre>
-<code>
+    
+<x-code-prism data-lang="javascript">
 xtag.register('accordion', {
   onCreate: function(){
     // fired once at the time a component 
@@ -48,8 +48,8 @@ xtag.register('accordion', {
     }
   }
 });
-</code>
-</pre>
+</x-code-prism>
+
   </div>
 
   <div class="block">
@@ -63,12 +63,12 @@ xtag.register('accordion', {
         in the W3 Web Components draft.
       </p>
       
-<pre>
-<code>
+
+<x-code-prism data-lang="javascript">
 xtag.register('superinput', {
-  content: '<input type="text" />'
+  content: '&amp;lt;input type=&quot;text&quot; /&amp;gt;'
 });
-</code>
+</x-code-prism>
 </pre>
 
     </dd>
@@ -80,16 +80,16 @@ xtag.register('superinput', {
         <code>document.createElement</code>, an onCreate function is called 
         allowing you to modify the element before any other code is applied to it.
       </p>
-<pre>
-<code>
+
+<x-code-prism data-lang="javascript">
 xtag.register('superinput', {
   onCreate: function(){
     // superinputs begin life knowing they're super.
     this.value = 'super';
   }
 });
-</code>
-</pre>
+</x-code-prism>
+
 
     </dd> 
     
@@ -102,16 +102,16 @@ xtag.register('superinput', {
         component accordingly.
       </p>
       
-<pre>
-<code>
+
+<x-code-prism data-lang="javascript">
 xtag.register('superinput', {
   onInsert: function(){
     // superinputs announce their arrival in the DOM like a boss!
     alert("Yeah, that's right, superinput comin' thro'!");
   }
 });
-</code>
-</pre>
+</x-code-prism>
+
 
     </dd>
     
@@ -124,8 +124,8 @@ xtag.register('superinput', {
         getter would have the oppertunity to fetch that value from anywhere 
         you'd like and even modify it before returning.
       </p>
-<pre>
-<code>
+
+<x-code-prism data-lang="javascript">
 xtag.register('superinput', {
   getters: {
     value: function(){
@@ -134,8 +134,8 @@ xtag.register('superinput', {
     }
   }
 });
-</code>
-</pre>
+</x-code-prism>
+
 
     </dd>
     
@@ -147,8 +147,8 @@ xtag.register('superinput', {
         your setter would be called with the provided string value giving you a chance to
         manipulate the string or change properties on the element.
       </p>
-<pre>
-<code>
+
+<x-code-prism data-lang="javascript">
 xtag.register('superinput', {
   setters: {
     value: function(value){
@@ -158,8 +158,8 @@ xtag.register('superinput', {
     }
   }
 });
-</code>
-</pre>
+</x-code-prism>
+
 
     </dd>
     
@@ -170,17 +170,17 @@ xtag.register('superinput', {
         Pseudo events like delegation are supported, additional pseudos can be added to 
         the <code>pseudos</code> object on the global <code>xtag</code> variable.
       </p>
-<pre>
-<code>
+
+<x-code-prism data-lang="javascript">
 xtag.register('superinput', {
   events: {
     focus: function(){
-      // what should superinputs do when they're in the spotlight?
+      // what should superinputs do when they are in the spotlight?
     }
   }
 });
-</code>
-</pre>      
+</x-code-prism>
+   
       
     </dd>
     
@@ -193,13 +193,13 @@ xtag.register('superinput', {
         you can add your own mixins there too!
       </p>
 
-<pre>
-<code>
+
+<x-code-prism data-lang="javascript">
 xtag.register('superinput', {
   mixins: ['superdefaults']
 });
-</code>
-</pre>
+</x-code-prism>
+
       </dd> 
     </dl>
   </div>
@@ -236,21 +236,4 @@ xtag.register('superinput', {
   </div>
 </div>
 
-<script type="text/javascript" src="highlight/highlight.pack.js"></script>
-
-<script type="text/javascript">
-  (function(){
-    var code = Array.prototype.slice.call(document.body.querySelectorAll('pre code'), 0),
-      count = code.length;
-      
-    while(count--){
-      var text = code[count].innerHTML;
-      code[count].innerHTML = '';
-      code[count].textContent = text;
-    };
-    
-    hljs.tabReplace = '    ';
-    hljs.initHighlightingOnLoad();
-  })();
-</script>
 {% endblock%}
