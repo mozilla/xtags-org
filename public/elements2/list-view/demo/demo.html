@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8" />
+
+		<title>List-View Demo - X-Tag</title>
+		
+		
+		<link rel="stylesheet" type="text/css" href="../listview.css" />
+		<script type="text/javascript" src="../../lib/x-tag/x-tag.js"></script>
+		<script type="text/javascript" src="../listview.js"></script>
+		
+		<style type="text/css">
+
+			x-listview{
+				height: 150px;
+				border: solid 1px #ddd;
+			}
+
+		</style>
+		
+	</head>
+	
+<body>
+
+
+	<!--  Listview exclusively using x-tags -->
+	<x-listview id="listview3">
+		<x-section>
+			<x-header>Section 1</x-header>
+			<x-listitem>item 1</x-listitem>
+			<x-listitem>item 2</x-listitem>
+		</x-section>
+		<x-section>
+			<x-header>Section 2</x-header>		
+			<x-listitem>item 1</x-listitem>
+			<x-listitem>item 2</x-listitem>
+			<x-listitem>item 3</x-listitem>
+			<x-listitem>item 4</x-listitem>
+		</x-section>
+		<x-section>
+			<x-header>Section 3</x-header>
+			<x-listitem>item 1</x-listitem>
+			<x-listitem>item 2</x-listitem>
+		</x-section>
+		<x-section>
+			<x-header>Section 4</x-header>
+			<x-listitem>item 1</x-listitem>
+			<x-listitem>item 2</x-listitem>
+		</x-section>
+	</x-listview>
+
+<br />
+<br />
+<br />
+<br />
+
+	<!--  Listview exclusively using x-tags without sections -->
+	<x-listview id="listview4">
+		<x-listitem>item 1</x-listitem>
+		<x-listitem>item 2</x-listitem>
+		<x-listitem>item 3</x-listitem>
+		<x-listitem>item 4</x-listitem>
+	</x-listview>
+
+
+<br />
+<br />
+<br />
+<br />
+
+
+	<x-listview id="listview1">
+		<dl>
+			<dt>Section 1</dt>
+			<dd>
+				Item 1
+			</dd>
+			<dd>
+				Item 2
+			</dd>
+			<dd>
+				Item 3
+			</dd>
+			<dd>
+				Item 4
+			</dd>
+			<dd>
+				Item 5
+			</dd>
+			<dd>
+				Item 6
+			</dd>
+			<dd>
+				Item 7
+			</dd>
+			<dd>
+				Item 8
+			</dd>
+			<dd>
+				Item 9
+			</dd>
+			<dd>
+				Item 10
+			</dd>
+		</dl>
+	</x-listview>
+
+
+<br />
+<br />
+<br />
+<br />
+
+
+
+</body>
+
+<script type="text/javascript">
+	
+
+</script>
+
+</html>

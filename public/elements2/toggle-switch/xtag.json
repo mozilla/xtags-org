@@ -1,0 +1,49 @@
+{	
+	"name": "Toggle Switch",
+	"tagName": "x-toggle-switch",
+	"version": "0.0.8",
+	"author": "Karthik Viswanathan, Arron Schaar",
+	"description": "An on-off switch that can be toggled with a click.",
+	"images": [],	
+	"categories": ["input"],
+	"demo":"demo/demo.html",
+	"compatibility": {
+		"firefox": 5,
+		"chrome": 4,
+		"ie": 9,
+		"opera": 12,
+		"android": 2.1,
+		"ios": 4
+	},
+	"documentation": {
+		"description": "",
+		"attributes": {
+			"on-text": "Sets the text displayed in on mode.",
+			"off-text": "Sets the text displayed in off mode.",
+			"input-name": "Name to be used on the input element.",
+			"initial-value": "Sets the starting value. on|off",
+			"label": "Pretty label name. The label will use input-name if this is not provided."
+		},
+		"events": {
+			"on": "Triggered when the toggle switch is turned on.",
+			"off": "Triggered when the toggle switch is turned off."
+		},
+		"methods": {
+			"toggle": "Toggles the toggle switch.",
+			"setOn": "Toggles to the on position.",
+			"setOff": "Toggles to the off position."
+		}, 
+		"getters": {
+			"onText": "Gets the text displayed in on mode.",
+			"offText": "Gets the text displayed in off mode.",
+			"inputName": "Gets the form input's name attribute.",
+			"label": "Gets the label text."
+		},
+		"setters": {
+			"onText": "Sets the text displayed in on mode in the data-on-text attribute.",
+			"offText": "Sets the text displayed in off mode in the data-off-text attribute.",
+			"inputName":"Sets the form input element's name attribute.",
+			"label": "Sets the label text."
+		}
+	}
+}

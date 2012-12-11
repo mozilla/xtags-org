@@ -1,0 +1,92 @@
+
+x-actionbar {
+	display: box;
+	display: -o-box;
+	display: -ms-box;
+	display: -moz-box;
+	display: -webkit-box;
+	display: flex;
+	display: -o-flex;
+	display: -ms-flex;
+	display: -moz-flex;
+	display: -webkit-flex;
+	box-align: center;
+	-o-box-align: center;
+	-ms-box-align: center;
+	-moz-box-align: center;
+	-webkit-box-align: center;
+	align-self: center;
+	-o-align-self: center;
+	-ms-align-self: center;
+	-moz-align-self: center;
+	-webkit-align-self: center;
+	box-flex: 1;
+	-o-box-flex: 1;
+	-ms-box-flex: 1;
+	-moz-box-flex: 1;
+	-webkit-box-flex: 1;
+	flex: 1;
+	-o-flex: 1;
+	-ms-flex: 1;
+	-moz-flex: 1;
+	-webkit-flex: 1;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-ms-box-sizing: border-box;
+	-o-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+
+
+x-action img{
+	display: block;
+	height: auto;
+	margin: 0 auto;
+}
+
+x-action:after {
+	display: block;
+	content: attr(label);
+	text-align: center;
+	font-size: 80%;
+}
+
+x-actionbar[mode="icon"] > x-action:after, x-action[mode="icon"]:after {
+	display: none;
+}
+
+x-actionbar[mode="text"] > x-action img, x-action[mode="text"] img {
+	display: none;
+}
+
+x-actionbar[mode="text"] > x-action:after, x-action[mode="text"]:after {
+	font-size: 100%;
+}
+
+x-actionbar[mode="full"] > x-action img, x-action[mode="full"] img {
+	float: left;
+}
+
+x-actionbar[mode="full"] > x-action:after, x-action[mode="full"]:after {
+	display: inline-block;
+	margin-left: 6px;
+	font-size: 100%;
+	text-align: left;
+}
+
+x-action {
+	display: inline-block;
+}
+x-actionbar[group="0"] > x-action:not([group~="0"]),
+x-actionbar[group="1"] > x-action:not([group~="1"]),
+x-actionbar[group="2"] > x-action:not([group~="2"]),
+x-actionbar[group="3"] > x-action:not([group~="3"]),
+x-actionbar[group="4"] > x-action:not([group~="4"]),
+x-actionbar[group="5"] > x-action:not([group~="5"]),
+x-actionbar[group="6"] > x-action:not([group~="6"]),
+x-actionbar[group="7"] > x-action:not([group~="7"]),
+x-actionbar[group="8"] > x-action:not([group~="8"]),
+x-actionbar[group="9"] > x-action:not([group~="9"]) {
+	display: none;
+}

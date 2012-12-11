@@ -1,0 +1,36 @@
+{	
+	"name": "List View",
+	"tagName": "x-listview",
+	"version": "0.0.2",	
+	"description": "A list of section headers with nested listitems.  This control also provides click/touch scrolling of the list",
+	"author": "Arron Schaar",
+	"images": [],	
+	"categories": ["structural"],
+	"demo": "demo",
+	"compatibility": {	
+		"firefox": 5,
+		"chrome": 4,
+		"opera": 11,
+		"android": 2.1,
+		"ios": 4
+	},
+	"documentation":{
+		"description": "",
+		"attributes": { 
+
+		},
+		"events": {
+			"nodeinserted": "Fires each time a new listitem is added.",
+			"itemselected": "Fires when a listitem is selected"
+		},
+		"methods": {
+			"getSelected":"Returns an array of selected listitem elements."
+		}, 
+		"getters": {
+
+		},
+		"setters": {
+		
+		}
+	}
+}

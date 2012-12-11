@@ -1,0 +1,17 @@
+{	
+	"name": "Shiftbox",
+	"tagName": "x-shiftbox",
+	"version": "0.0.1",
+	"author": "Daniel Buchner",
+	"description": "A container element that allows you to slide aside a main <x-shift> element to reveal secondary content such as menus, widgets, or settings lists underneath.",
+	"images": [],	
+	"categories": ["structural"],
+	"compatibility": {	
+		"firefox": 5,
+		"chrome": 4,
+		"ie": 9,
+		"opera": 12,
+		"android": 2.1,
+		"ios": 4
+	}
+}

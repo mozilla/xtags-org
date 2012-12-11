@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8" />
+
+		<title>Toggler Demo - X-Tag</title>
+		
+		
+		<link rel="stylesheet" type="text/css" href="../toggler.css" />
+		<script type="text/javascript" src="../../lib/x-tag/x-tag.js"></script>
+		<script type="text/javascript" src="../toggler.js"></script>
+		
+		
+	</head>
+	
+<body>
+
+	<x-toggler data-targetset="content1 content2" data-initial-target-state="close">
+		<button>Toggle</button>
+	</x-toggler>
+
+	<button id="btnChangeSource">Change Source</button>
+	<span id="spnTargetSet"></span>
+
+	<div id="content1">
+			<h1>Content</h1>
+			<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchange</p>
+	</div>
+
+
+	<div id="content2" data-toggled>
+			<h1>Content2</h1>
+			<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchange</p>
+	</div>
+	
+	
+</body>
+
+<script type="text/javascript">
+	var c = 0;
+	document.getElementById('spnTargetSet').innerHTML = document.getElementsByTagName('x-toggler')[0].getAttribute('data-targetset');
+	document.getElementById('btnChangeSource').addEventListener('click', function(){
+		var toggler = document.getElementsByTagName('x-toggler')[0];
+		switch(c % 3){
+			case 0:
+				toggler.setAttribute('data-targetset','content2');
+				document.getElementById('spnTargetSet').innerHTML = 'content2';
+				break;
+			case 1:
+				toggler.setAttribute('data-targetset','content1');
+				document.getElementById('spnTargetSet').innerHTML = 'content1';
+				break;
+			case 2:
+				toggler.setAttribute('data-targetset','content1 content2');
+				document.getElementById('spnTargetSet').innerHTML = 'content1 content2';
+				break;
+		}
+		c++;  // native code.. do not touch
+	});
+
+</script>
+
+</html>

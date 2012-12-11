@@ -1,0 +1,48 @@
+{	
+	"name": "Template",
+	"tagName": "x-template",
+	"version": "0.0.2",
+	"author": "Daniel Buchner",
+	"description": "The primary element used in templating and data inflation for custom elements",
+	"images": [],	
+	"categories": ["behavioral"],
+	"demo": "demo/demo.html",
+	"compatibility": {	
+		"firefox": 6,
+		"chrome": 9,
+		"ie": 9,
+		"opera": 12,
+		"android": 2.1,
+		"ios": 5
+	}, 
+	"documentation":{
+		"getters": {
+			"renderer": "Gets the current render function.",
+			"beforeRender": "Gets the before render function.", 
+			"name": "Gets the name of the template.",
+			"scriptElement": "Gets the script element.", 
+			"contentElement": "Gets the template content element.", 
+			"script": "Gets the script text.",
+			"content": "Gets the template content html."
+		}, 
+		"setters": {
+			"renderer": "Allows you to use a custom rendering function.", 
+			"beforeRender": "Gives you the chance to massage the data before calling render.", 
+			"name": "The name of the template", 
+			"script": "Sets the script to be ran over the template.", 
+			"content": "Sets the template content."
+		},
+		"methods": {
+			"attachTemplate": "Renders the template inside the passed element.", 
+			"detachTemplate": "Removes the association between this template and element.", 
+			"render": "Renders all elements that are attached to this template.", 
+			"addTemplateListener": "Adds an event listener for this template.",
+			"addTemplateListeners": "Adds multiple listeners for this template.", 
+			"removeTemplateListeners": "Removes event listeners for this template.",
+			"addTemplateSetters": "Adds setters that allows you do update individual parts of the rendered template."
+		},
+		"events": {
+			"templatechange": "Fires each time a template is changed."
+		}
+	}
+}

@@ -1,0 +1,57 @@
+<!DOCTYPE HTML>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		
+		<title>Slider Demo - X-Tag</title>
+		<link rel="stylesheet" href="../slider.css">
+		<style type="text/css">
+			#bug{
+				
+				float:right;
+			}
+			#bug x-slider{
+				margin-left:50px;
+			}
+		</style>
+		<script type="text/javascript" src="../../lib/x-tag/x-tag.js"></script>
+		<script type="text/javascript" src="../slider.js"></script>
+	</head>
+
+	<body>
+		
+		<h1>Sliders - X-Tag</h1>
+
+		<x-slider 
+			data-name="weight"
+			data-min-label="min"
+			data-max-label="max"
+			data-label="Weight"
+			data-snap
+			data-step="1"
+			data-start-value="5"
+			data-min="0" 
+			data-max="10">
+		</x-slider>
+
+
+		<div id="bug">
+			<x-slider 
+				data-name="weight"
+				data-min-label="personal"
+				data-max-label="huge"
+				data-label="Pizza Size"		
+				data-start-value="15"
+				data-step="5"
+				data-min="0" 
+				data-max="100">
+			</x-slider>
+		</div>
+
+		
+		<script>
+			
+		</script>
+	</body>
+</html>

@@ -1,0 +1,26 @@
+{   
+ "name": "Code Highlighter",
+ "tagName": "x-code",
+ "version": "0.0.4",
+ "author": "Stephen Murphy",
+ "description": "Highlight code snippets using highlight.js",
+ "images": ["http://softwaremaniacs.org/media/soft/screenshots/highlight_2.png"], 
+ "categories": ["structural"],
+ "demo":"demo/demo.html",
+ "compatibility": { 
+   "firefox": 5,
+   "chrome": 4,
+   "ie": 9,
+   "opera": 11,
+   "android": 2.1,
+   "ios": 4
+ },
+ "documentation":{
+    "getters":{
+      "text": "Gets raw text being formatted."
+    }, 
+    "setters":{
+      "text": "Sets the text to be formatted."
+    }
+  }
+}

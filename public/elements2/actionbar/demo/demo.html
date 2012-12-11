@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8" />
+
+		<title>Actionbar Demo - X-Tag</title>		
+		<link rel="stylesheet" type="text/css" href="../actionbar.css" />
+		
+		<script type="text/javascript" src="../../lib/x-tag/x-tag.js"></script>
+		<script type="text/javascript" src="../actionbar.js"></script>
+		
+		<style>
+		
+		</style>
+	</head>
+	
+<body>
+
+	<x-actionbar group="1">
+		<x-action 
+			group="1 2"
+			command="new-content" 
+			label="New" 
+			icon="plus.png">
+		</x-action>
+		<x-action
+			group="1 2"
+			command="refresh-content" 
+			label="Refresh" 
+			icon="refresh.png">
+		</x-action>
+		<x-action
+			group="1 2"
+			command="gridify-content" 
+			label="Grid" 
+			icon="grid.png">
+		</x-action>
+		<x-action
+			group="2"
+			command="action-4" 
+			label="4th Action" 
+			icon="grid.png">
+		</x-action>
+		<x-action 
+			group="2"
+			command="action-5" 
+			label="5th Action" 
+			icon="grid.png">
+		</x-action>
+		<x-action
+			group="1 2" 					
+			label="Advanced"
+			command="more"
+			icon="more-actions.png">
+		</x-action>
+	</x-actionbar>
+
+</body>
+
+<script type="text/javascript">
+	xtag.addEvent(document, 'command', function(e){
+		console.log(e.command);
+		if (e.command == "more"){
+			if (e.target.parentNode.group == "1"){
+				e.target.parentNode.group = 2;				
+			}else{
+				e.target.parentNode.group = 1;
+			}
+		}
+	});
+</script>
+
+</html>

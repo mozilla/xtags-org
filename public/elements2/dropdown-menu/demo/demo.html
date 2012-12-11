@@ -1,0 +1,73 @@
+<!DOCTYPE HTML>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		
+		<title>Dropdown Menu Demo - X-Tag</title>
+		<link rel="stylesheet" href="../dropdown-menu.css">
+
+		<script type="text/javascript" src="../../lib/x-tag/x-tag.js"></script>
+		<script type="text/javascript" src="../dropdown-menu.js"></script>
+	</head>
+
+	<body>
+		<x-dropdown-menu data-fade-duration="500">
+			<label>This is</label>
+			<menu>
+				<li>an item</li>
+				<li>
+					<label>some item</label>
+					<menu>
+						<li>some other item</li>
+						<li>
+							<label>an interesting item</label>
+							<menu>
+								<li>a triple-nested item</li>
+								<li>just an item</li>
+								<li>just another item</li>
+							</menu>
+						</li>
+						<li>an intriguing item</li>
+					</menu>
+				</li>
+				<li>many items</li>
+				<li>
+					<label>a myriad of items</label>
+					<menu>
+						<li>100 items</li>
+						<li>200 items</li>
+						<li>1000 items</li>
+						<li>2000 items</li>
+					</menu>
+				</li>
+			</menu>
+		</x-dropdown-menu>
+
+		
+
+		<script id="next-dropdown-html" type="text/template">
+			<label>Options</label>
+			<menu>
+				<li>1 unicorn</li>
+				<li>2 unicorns</li>
+				<li>3 unicorns</li>
+				<li>1 more unicorn</li>
+			</menu>
+		</script>
+
+		<script>
+			document.addEventListener('DOMComponentsLoaded', function() {
+				var dropdownMenu = document.querySelector('x-dropdown-menu');
+				dropdownMenu.addEventListener('hide', function(event) {
+					console.log(event);
+				});
+
+				var nextDropdownMenu = document.createElement('x-dropdown-menu');
+				nextDropdownMenu.innerHTML = document.getElementById('next-dropdown-html').innerHTML;
+				nextDropdownMenu.fadeDuration = 0;
+				document.body.appendChild(nextDropdownMenu);
+			});
+		</script>
+	</body>
+</html>

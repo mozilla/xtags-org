@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8" />
+		
+		<title>Map Demo - X-Tag</title>
+		
+		<link rel="stylesheet" type="text/css" href="../map.css" />
+		<script type="text/javascript" src="../../lib/x-tag/x-tag.js"></script>
+		<script type="text/javascript" src="../map.js"></script>
+		
+		<style>
+			#map_1, #map_2 {
+				height: 300px;
+				width: 300px;
+				margin: 50px;
+			}
+		</style>
+	</head>
+	
+<body>
+	<h3>Default Load</h3>
+	<x-map id="map_1" data-key="39d2b66f0d5d49dbb52a5b7ad87aea9b"></x-map>
+
+	<h3>Using Geo-Location</h3>
+	<x-map id="map_2" data-key="39d2b66f0d5d49dbb52a5b7ad87aea9b" data-location="auto"></x-map>
+</body>
+
+
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE HTML>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		
+		<title>Date Time Picker Demo - X-Tag</title>
+		<link rel="stylesheet" href="../date-time-picker.css">
+
+		<style type="text/css">
+			#timePicker{			
+				font-size: 2em;
+			}
+
+			x-date-time-picker{
+				margin:4px;
+			}
+		</style>
+		<script type="text/javascript" src="../../lib/x-tag/x-tag.js"></script>
+		<script type="text/javascript" src="../date-time-picker.js"></script>
+	</head>
+
+	<body>
+		
+		<h1>Date Time Picker - X-Tag</h1>
+
+		<x-date-time-picker id="datePicker" data-start-time="2012-10-30" data-columns="MM|dd"></x-date-time-picker>
+
+		<x-date-time-picker id="datePicker" data-type="date"></x-date-time-picker>
+		
+		<br/>
+
+		<x-date-time-picker id="timePicker" data-type="time"></x-date-time-picker>
+
+		<br/>
+
+		<x-date-time-picker id="dateTimePicker" data-type="datetime"></x-date-time-picker>
+
+		
+		
+		<script>
+		</script>
+	</body>
+</html>

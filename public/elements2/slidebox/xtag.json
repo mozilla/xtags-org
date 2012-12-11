@@ -1,0 +1,35 @@
+{	
+	"name": "Slidebox",
+	"tagName": "x-slidebox",
+	"version": "0.0.4",
+	"author": "Arron Schaar, Daniel Buchner",
+	"description": "A container that allows animated transitions between content panes. Slide Box supports horizontal and vertical transitions.",
+	"images": [],	
+	"categories": ["structural"],
+	"compatibility": {	
+		"firefox": 5,
+		"chrome": 4,
+		"ie": 9,
+		"opera": 12,
+		"android": 2.1,
+		"ios": 4
+	}, 
+	"demo": "demo",
+	"documentation":{
+		"attributes":{
+			"orientation":"Slide axis.  'x' or 'y'"
+		},
+		"setters":{
+			"orientation": "Sets the slide axis."
+		},
+		"methods":{
+			"slideTo":"Slides to a specific element index.",
+			"slideNext": "Slides to next element.",
+			"slidePrevious": "Slides to the previous element."
+		}, 
+		"events":{
+			"slideend":"Fires at the end of each slide transition."
+		}
+
+	}
+}

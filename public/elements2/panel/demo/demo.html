@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8" />
+		
+		<title>Panel Demo - X-Tag</title>
+		
+		
+		<link rel="stylesheet" type="text/css" href="../panel.css"/>		
+		
+		<script type="text/javascript" src="../../lib/x-tag/x-tag.js"></script>		
+		<script type="text/javascript" src="../panel.js"></script>		
+	</head>
+
+<body>
+
+
+	<button data-action-type="addSrc">Add <code>src</code> to Panel</button>
+	<button data-action-type="switchSrc">Switch <code>src</code></button>
+
+
+	<x-panel id="panel_demo"></x-panel>
+	
+	
+
+</body>
+
+<script type="text/javascript">
+
+	xtag.addEvent(document, 'click:delegate(button[data-action-type])', function(e){
+		var panel = document.getElementById('panel_demo');
+		var action = e.target;
+		switch(action.getAttribute('data-action-type')){
+
+			case 'addSrc':					
+				panel.src = 'panel-content.html';
+				break;
+					
+			case 'switchSrc':				
+				panel.src = 'panel-content2.html'
+				break;
+		}
+	});
+
+</script>
+
+</html>

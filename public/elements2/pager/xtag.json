@@ -1,0 +1,36 @@
+{	
+	"name": "Pager",
+	"tagName": "x-pager",
+	"version": "0.0.2",	
+	"author": "Arron Schaar",
+	"description": "Tired of creating pagers clientside and server side?  Set a few properties on this tag and it will do the rest.",
+	"images": ["test.com/images/screen1.png"],	
+	"categories": ["navigation"],
+	"demo": "demo",
+	"compatibility": {	
+		"firefox": 5,
+		"chrome": 4,
+		"ie": 9,
+		"opera": 12,
+		"android": 2.1,
+		"ios": 4
+	},
+	"documentation":{
+		"description": "",		
+		"attributes": {
+			"data-current-page": "Sets the current page"
+		},
+		"events": {
+			"pagechanged": "Fired when user clicks on a different page number or previous/next/first/last."
+		},
+		"methods": {
+
+		}, 
+		"getters": {
+
+		},
+		"setters": {
+			"data-current-page": "Sets the attribute, refreshes the pager and fires pagechanged event."
+		}
+	}
+}

@@ -1,0 +1,47 @@
+{	
+	"name": "Select List",
+	"tagName": "x-select-list",
+	"version": "0.0.2",
+	"author": "Karthik Viswanathan",
+	"description": "A popup that prompts the user to select an item from a list.",
+	"images": [],
+	"demo": "demo",
+	"categories": [""],
+	"compatibility": {
+		"firefox": 5,
+		"chrome": 4,
+		"ie": 9,
+		"opera": 12,
+		"android": 2.1,
+		"ios": 4
+	},
+	"documentation": {
+		"description": "",
+		"attributes": {
+			"data-multi-select": "Sets whether the user should be allowed to select multiple items",
+			"data-ok-text": "Sets the text of the OK button for multi-select lists.",
+			"data-location": "Sets the location (top, bottom, or center) of the select list."
+		},
+		"events": {
+			"show": "Triggered when the select list is shown.",
+			"hide": "Triggered when the select list is hidden. Event object contains a selectedItem(s) property that holds which li(s) was (were) selected.",
+			"select": "Triggered on a list item when it is selected.",
+			"deselect": "Triggered on a list item when it is deselected ."
+		},
+		"methods": {
+			"show": "Shows this select list and waits for user input.",
+			"hide": "Hides this select list.",
+			"getSelected": "Returns the selected item(s) in this list."
+		}, 
+		"getters": {
+			"multiSelect": "Gets whether the user is allowed to select multiple items.",
+			"okText": "Gets the text of the OK button.",
+			"location": "Gets the location (top, bottom, or center) of the select list."
+		},
+		"setters": {
+			"multiSelect": "Sets whether the user should be allowed to select multiple items in the data-multi-select attribute.",
+			"okText": "Sets the text of the OK button for multi-select lists in the data-ok-text attribute.",
+			"location": "Sets the location (top, bottom, or center) of the select list in the data-location attribute."
+		}
+	}
+}

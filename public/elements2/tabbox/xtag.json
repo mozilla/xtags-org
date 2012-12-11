@@ -1,0 +1,22 @@
+{	
+	"name": "Tabbox",
+	"tagName": "x-tabbox",
+	"version": "0.0.2",	
+	"author": "Daniel Buchner",
+	"description": "A container used to display a set of tabbed pages of elements. ",
+	"images": [],
+	"categories": ["structural"],
+	"compatibility": {	
+		"firefox": 5,
+		"chrome": 4,
+		"ie": 9,
+		"opera": 12,
+		"android": 2.1,
+		"ios": 4
+	}, 
+	"documentation": {
+		"methods": {
+			"":""
+		}
+	}
+}

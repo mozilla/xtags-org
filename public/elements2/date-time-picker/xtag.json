@@ -1,0 +1,45 @@
+{	
+	"name": "Date Time Picker",
+	"tagName": "x-date-time-picker",
+	"version": "0.0.2",
+	"author": "Arron Schaar",
+	"description": "Date, Time and DateTime picker.",
+	"images": [],	
+	"categories": ["input"],
+	"demo": "demo",
+	"compatibility": {
+		"firefox": 5,
+		"chrome": 4,
+		"ie": 9,
+		"opera": 12,
+		"android": 2.1,
+		"ios": 4
+	},
+	"documentation":{
+		"description": "Date, Time and DateTime picker.  Uses flex box",
+		"attributes": { 
+			"name": "The  name of the hidden input that stores the current date/time.", 
+			"data-type":"The type of picker. This attribute supersedes data-columns. options: date|time|datetime",
+			"data-columns": "List of date/time units to be used.  Example: YYYY|MMM|dd",
+			"data-start-time": "The initial start date/time of the input.  Defaults to now()."
+		},
+		"events": {
+			"change": "Fired each time the input value is changed"
+		},
+		"methods": {
+		}, 
+		"getters": {
+			"columns": "Returns an array of time units that are currently being used.", 
+			"startTime": "Returns the starting time of the picker.",
+			"type": "Returns the data-type attribute",
+			"value": "Returns the current selected time in milliseconds",
+			"name": "Returns the input name"
+		},
+		"setters": {
+			"startTime": "Sets date-start-time to the toLocaleString() and refreshes the control.  Uses Date.parse().",
+			"value": "Sets the current selected value and refreshes the control. Value must be in milliseconds.", 
+			"name": "Sets the input name and the controls name"
+		}
+	},
+	"dependencies":[]
+}

@@ -1,0 +1,37 @@
+{	
+	"name": "Element Visibility Toggler",
+	"tagName": "x-toggler",
+	"version": "0.0.2",
+	"author": "Arron Schaar",
+	"description": "Toggles an elements visibility.  By default the togglers works on the next sibling or a list of element IDs in the data-targetset attribute.",
+	"images": [],	
+	"categories": ["structural"],
+	"demo":"demo",
+	"compatibility": {
+		"firefox": 5,
+		"chrome": 4,
+		"ie": 9,
+		"opera": 12,
+		"android": 2.1,
+		"ios": 4
+	},
+	"documentation":{
+		"description": "Toggles the element's next sibling OR a list of elements by ID via data-targetset.",
+		"attributes": { 
+			"data-targetset": "A space separated list of elements IDs that the toggler controls.",
+			"data-toggle-state": "Set the initial state of target(s)."
+		},
+		"events": {
+			
+		},
+		"methods": {
+
+		}, 
+		"getters": {
+			"state": "Returns data-toggle-state attribute."
+		},
+		"setters": {
+		
+		}
+	}
+}

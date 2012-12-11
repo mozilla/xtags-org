@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8" />
+		
+		<title>Shift Box Demo - X-Tag</title>
+		
+		
+		<link rel="stylesheet" type="text/css" href="../slidebox.css"/>		
+		
+		<script type="text/javascript" src="../../../x-tag.js"></script>		
+		<script type="text/javascript" src="../slidebox.js"></script>		
+		<style type="text/css">
+			#slidebox_demo {
+				height: 300px;
+				width: 220px;
+			}
+			
+		</style>
+	</head>
+
+<body>
+
+	<div id="tags" class="max-width">
+
+		<dl>
+		
+			<dt>Shift Box</dt>
+			<dd id="shiftbox">
+				<p class="description">
+					
+				</p>
+				
+				<nav class="actions">				
+					<button data-action-type="toggleShift">Toggle Shift Box</button>					
+				</nav>
+				
+				<x-shiftbox id="shiftbox_demo">
+					
+				</x-shiftbox>
+				
+			</dd>
+		</dl>
+	</div>
+	
+
+</body>
+
+<script type="text/javascript">
+
+	
+	document.addEventListener('click', function(e){
+		
+		var action = e.target,
+			parent = action.parentNode,
+			actionType = action.getAttribute('data-action-type');
+	
+		if (actionType) {
+		
+			var tag = action.parentElement.parentElement.id,
+				demo = document.getElementById(tag + '_demo');
+			
+			switch(actionType) {
+				
+				case 'toggleShift':			
+					demo.shift = 80;
+					break;
+				default:
+					break;
+
+			}
+			
+		}
+	});
+</script>
+
+</html>

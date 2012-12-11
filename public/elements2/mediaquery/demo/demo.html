@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8" />
+		
+		<title>Mediaquery Demo - X-Tag</title>
+		
+		
+		<link rel="stylesheet" type="text/css" href="../mediaquery.css"/>		
+		
+		<script type="text/javascript" src="../../lib/x-tag/x-tag.js"></script>		
+		<script type="text/javascript" src="../mediaquery.js"></script>
+		
+		<x-mediaquery id="small_desktop" for="app foo" media="only screen and (min-width : 400px) and (max-width : 600px)"></x-mediaquery>
+		
+		<style type="text/css">
+			#mediaquery_demo {
+				height: 300px;
+				width: 220px;
+				background: #eee;
+				border: 1px solid #ccc;
+			}
+		</style>
+	</head>
+
+<body id="app">
+
+<div id="tags" class="max-width">
+
+	<dl id="foo">
+		
+		<dt>Media Query</dt>
+		<dd id="flipbox">
+		
+			<p class="description">
+				An element that allows you to target markup blocks based on query matching, execute media query action x-tags that perform specific tasks (moving an element in the DOM, deleting elements if found, etc), more easily react to changes in query states using auto-generated event listeners.
+			</p>
+			<nav class="actions">
+					
+			</nav>
+			
+			<div id="mediaquery_demo"></div>
+			
+			
+		</dd>
+	</dl>
+</div>
+	
+
+</body>
+
+<script type="text/javascript">
+
+	
+	xtag.query(document, 'x-mediaquery')[0].addEventListener('mediaqueryactive', function(){
+		console.log('active', this);
+	});
+	
+	xtag.query(document, 'x-mediaquery')[0].addEventListener('mediaqueryinactive', function(){
+		console.log('inactive', this);
+	});
+	
+	
+	document.addEventListener('mediaqueryactive', function(event){
+		console.log('active', this);
+	});
+	
+	document.addEventListener('mediaqueryinactive', function(event){
+		console.log('inactive', this);
+	});
+	
+	
+	document.getElementById('tags').addEventListener('mediaqueryactive', function(event){
+		console.log('active', this);
+	});
+	
+	document.getElementById('tags').addEventListener('mediaqueryinactive', function(event){
+		console.log('inactive', this);
+	});
+	
+	
+	document.getElementById('foo').addEventListener('mediaqueryactive', function(event){
+		console.log('active', this);
+	});
+	
+	document.getElementById('foo').addEventListener('mediaqueryinactive', function(event){
+		console.log('inactive', this);
+	});
+	
+	
+	setTimeout(function(){
+		xtag.query(document, 'x-mediaquery')[0].setAttribute('for', 'app foo tags');
+	}, 2000);
+	
+	document.addEventListener('click', function(e){
+		
+		var action = e.target,
+			parent = action.parentNode,
+			actionType = action.getAttribute('data-action-type');
+	
+		if (actionType) {
+		
+			var tag = action.parentElement.parentElement.id,
+				demo = document.getElementById(tag + '_demo');
+
+			switch(actionType) {
+				
+				case 'toggleFlip':
+					demo.flipped = !demo.flipped;
+					break;
+
+				case 'toggleDirection':
+					var directions = ['right','left','up','down'];
+					var idx = directions.indexOf(demo.flipDirection)+1;
+					idx = idx >= 4 ? 0 : idx;
+					action.innerHTML = action.innerHTML.replace(/\((\w+)\)/, function(){
+						return '(' + directions[idx] + ')';
+					});
+					demo.flipDirection = directions[idx];
+					break;
+
+			}
+			
+		}
+	});
+</script>
+
+</html>

@@ -1,0 +1,85 @@
+x-select-list {
+  display: none;
+	padding: 15px 35px;
+	background: #222;
+	color: #eee;
+	overflow: auto;
+
+	/* center select list relative to window */
+	position: fixed;
+	top: 50%;
+	left: 50%;
+
+	-webkit-transform: translate(-50%, -50%);
+	   -moz-transform: translate(-50%, -50%);
+	    -ms-transform: translate(-50%, -50%);
+	     -o-transform: translate(-50%, -50%);
+	        transform: translate(-50%, -50%);
+}
+
+x-select-list[data-active] {
+	display: block;
+}
+
+x-select-list[data-location='bottom'], x-select-list[data-location='top'] {
+	-webkit-transform: translate(-50%, 0);
+	   -moz-transform: translate(-50%, 0);
+	    -ms-transform: translate(-50%, 0);
+	     -o-transform: translate(-50%, 0);
+	        transform: translate(-50%, 0);
+}
+
+x-select-list[data-location='bottom'] {
+	top: auto;
+	bottom: 10px;
+}
+
+x-select-list[data-location='top'] {
+	top: 10px;
+	bottom: auto;
+}
+
+x-select-list h1, x-select-list h2, x-select-list h3,
+x-select-list h4, x-select-list h5, x-select-list h6 {
+	margin: -15px -35px 0;
+	padding: 15px 20px 10px;
+	border-bottom: 1px solid #666;
+}
+
+x-select-list ul {
+	margin: 0;
+	padding: 0;
+}
+
+x-select-list li {
+	cursor: pointer;
+	list-style-type: none;
+	line-height: 40px;
+	margin: 0 -20px;
+	padding: 2px 15px 0;
+	border-bottom: 1px solid #666;
+}
+
+x-select-list li:hover {
+	background: #333;
+}
+
+x-select-list li[selected] {
+	background: #eee;
+	color: #222;
+}
+
+.x-select-ok {
+	display: inline-block;
+	padding: 5px 15px;
+	background: #eee;
+	color: #222;
+	text-decoration: none;
+	margin: 10px 10px 0 -15px;
+
+	-webkit-border-radius: 5px;
+	   -moz-border-radius: 5px;
+	    -ms-border-radius: 5px;
+	     -o-border-radius: 5px;
+	        border-radius: 5px;
+}

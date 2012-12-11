@@ -1,0 +1,44 @@
+{	
+	"name": "Toast Message",
+	"tagName": "x-toast",
+	"version": "0.0.3",
+	"author": "Karthik Viswanathan",
+	"description": "A small popup message, generally triggered by an event, that disappears after a few seconds.",
+	"images": [],	
+	"categories": ["behavioral"],
+	"demo": "demo",
+	"compatibility": {
+		"firefox": 5,
+		"chrome": 4,
+		"ie": 9,
+		"opera": 12,
+		"android": 2.1,
+		"ios": 4
+	},
+	"documentation": {
+		"description": "",
+		"attributes": { 
+			"data-duration": "Sets the visibility duration of the toast.",
+			"data-location": "Sets the location (top or bottom) of the toast.",
+			"data-exclude-close": "Sets whether the close button is excluded."
+		},
+		"events": {
+			"show": "Triggered when the toast is shown.",
+			"hide": "Triggered when the toast is hidden." 
+		},
+		"methods": {
+			"show": "Makes this toast appear for the interval specified by the data-duration attribute or duration property.",
+			"hide": "Makes this toast disappear if it is not hidden already."
+		},
+		"getters": {
+			"duration": "Gets the visibility duration of the toast.",
+			"location": "Gets the location (top or bottom) of the toast.",
+			"excludeClose": "Gets whether the close button is excluded."
+		},
+		"setters": {
+			"duration": "Sets the visibility duration of the toast in the data-duration attribute.",
+			"location": "Sets the location (top or bottom) of the toast in the data-location attribute.",
+			"excludeClose": "Sets whether the close button is excluded in the data-exclude-close attribute."
+		}
+	}
+}

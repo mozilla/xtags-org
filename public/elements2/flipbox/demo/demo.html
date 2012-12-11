@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8" />
+		
+		<title>Flipbox Demo - X-Tag</title>
+		
+		
+		<link rel="stylesheet" type="text/css" href="../flipbox.css"/>		
+		
+		<script type="text/javascript" src="../../lib/x-tag/x-tag.js"></script>		
+		<script type="text/javascript" src="../flipbox.js"></script>		
+		<style type="text/css">
+			#flipbox_demo {
+				height: 300px;
+				width: 220px;
+			}
+		</style>
+	</head>
+
+<body>
+
+	<button data-action-type="toggleFlip">Flip</button>
+	<button data-action-type="toggleDirection">Switch Flip Direction (right)</button>				
+
+	<x-flipbox id="flipbox_demo">
+		<x-card>
+			<img src="birnimal-graph.png"/>
+			<img src="birnimal-settings.png"/>
+		</x-card>
+	</x-flipbox>
+
+</body>
+
+<script type="text/javascript">
+
+	xtag.addEvent(document, 'click:delegate(button[data-action-type])', function(e){
+		var flipbox = document.getElementById('flipbox_demo');
+		var action = e.target;
+		switch(action.getAttribute('data-action-type')){
+
+			case 'toggleFlip':
+				flipbox.flipped = !flipbox.flipped;
+				break;
+
+			case 'toggleDirection':
+				var directions = ['right','left','up','down'];
+				var idx = directions.indexOf(flipbox.flipDirection)+1;
+				idx = idx >= 4 ? 0 : idx;
+				action.innerHTML = action.innerHTML.replace(/\((\w+)\)/, function(){
+					return '(' + directions[idx] + ')';
+				});
+				flipbox.flipDirection = directions[idx];
+				break;
+		}
+	});
+
+</script>
+
+</html>

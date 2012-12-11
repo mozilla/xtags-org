@@ -1,0 +1,49 @@
+{	
+	"name": "Slider Input Element",
+	"tagName": "x-slider",
+	"author": "Arron Schaar",
+	"version": "0.0.3",
+	"description": "An enchanced version of the HTML5 range input.",
+	"images": [],	
+	"categories": ["input"],
+	"demo": "demo",
+	"compatibility": {
+		"firefox": 5,
+		"chrome": 4,
+		"ie": 9,
+		"opera": 12,
+		"android": 2.1,
+		"ios": 4
+	},
+	"documentation":{
+		"description": "",
+		"attributes": { 
+			"data-name": "The name of the input form element",
+			"data-label": "Slider label",
+			"data-min-label": "Label for the minimum value",
+			"data-max-label": "Label for the maximum value",
+			"data-min": "Minimum start value of the range slider",
+			"data-max": "Maximum start value of the range slider",
+			"data-step": "How much to increment on each step",
+			"data-snap": "Force the slider to snap to defined values(boolean attribute)",
+			"data-start-value": "Initial value of the slider"
+		},
+		"events": {
+			"change":"Fired each time the input value changes"
+		},
+		"methods": {
+
+		}, 
+		"getters": {
+			"value": "Returns the current value"
+		},
+		"setters": {
+			"label": "Sets the slider label",
+			"minLabel": "Sets the minimum label",
+			"maxLabel": "Sets the maximum label",
+			"min": "Sets the minimum value of the slider",
+			"max": "Sets the maximum value of the slider",
+			"step": "Sets the step increment/decrement amount"
+		}
+	}
+}
