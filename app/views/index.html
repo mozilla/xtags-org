@@ -1,5 +1,13 @@
 {% set page = 'index' %}
 {% extends "layout.html" %}
+
+{% block styles %}
+	<link rel="stylesheet" type="text/css" href="/elements/flipbox/flipbox.css"/>
+	<link rel="stylesheet" type="text/css" href="/elements/tabbox/tabbox.css"/>
+	<link rel="stylesheet" type="text/css" href="/elements/modal/modal.css"/>
+	<link rel="stylesheet" type="text/css" href="/elements/map/map.css"/>
+{% endblock %}
+	
 {% block index %}
 		<div class="limit">
 						
@@ -68,27 +76,194 @@
 				</div>
 			</div>
 			
-			<div class="block">
+			<div id="intro_demos" class="block">
 				<x-ribbon>Razzle-Dazzle</x-ribbon>
 				
 				<dl>
-					<dt text="Toggle Switch"></dt>
+					<dt text="Tabbox"><button title="View demo markup"></button></dt>
 					<dd>
-					
+						<div>
+							<p>
+								The modal element provides an simple, structural tag 
+								that for showing modaled content that auto-centers in 
+								response to dynamic changes to screen and content size.
+							</p>
+						</div>
+						<div id="tabbox_demo" class="demo">
+							<x-flipbox>
+								<x-card>
+									<div>
+										<x-tabbox id="tabbox_demo_element">
+											<x-tabs>
+												<x-tab selected="true">Tab 1</x-tab>
+												<x-tab>Tab 2</x-tab>
+												<x-tab>Tab 3</x-tab>
+											</x-tabs>
+											
+											<x-tabpanels>
+												<x-tabpanel selected="true">
+													<p>
+														Tabboxes are great for showing users only the content they need to see, while providing users an easy way to access additional content on-demand.
+													</p>
+												</x-tabpanel>
+												
+												<x-tabpanel>
+													<p>
+														Examples of use-cases for tabboxes include: a set of step-wise directions, grouping like content elements together, or as a building block for a tabbed viewing interface in a mobile web app.
+													</p>
+												</x-tabpanel>
+
+												<x-tabpanel>
+													<p>
+														In short, tabboxes are pretty freaking cool, and when you pair them with CSS animations/transitions, you can do things with a few styles that used to take a ton of JavaScript and custom code.
+													</p>
+												</x-tabpanel>
+											</x-tabpanels>
+										</x-tabbox>
+									</div>
+									<div>
+										<x-code-prism>
+											<x-tabbox>
+												<x-tabs>
+													<x-tab selected="true">Tab 1</x-tab>
+													<x-tab>Tab 2</x-tab>
+													<x-tab>Tab 3</x-tab>
+												</x-tabs>
+												
+												<x-tabpanels>
+													<x-tabpanel selected="true">
+														<p> Panel 1 </p>
+													</x-tabpanel>
+													
+													<x-tabpanel>
+														<p> Panel 2 </p>
+													</x-tabpanel>
+
+													<x-tabpanel>
+														<p> Panel 3 </p>
+													</x-tabpanel>
+												</x-tabpanels>
+											</x-tabbox>
+										</x-code-prism>
+									</div>
+								</x-card>
+							</x-flipbox>
+						</div>
 					</dd>
 					
-					<dt text="Slidebox"></dt>
+					<dt text="Modal"><button title="View demo markup"></button></dt>
 					<dd>
-					
+						<div>
+							<p>
+								The modal element provides an simple, structural tag 
+								that for showing modaled content that auto-centers in 
+								response to dynamic changes to screen and content size.
+							</p>
+						</div>
+						<div id="modal_demo" class="demo">
+							<x-flipbox>
+								<x-card>
+									<div>
+										<table>
+											<td>
+												<button>Show Modal</button>
+											</td>
+										</table>
+									</div>
+									<div>
+										<x-code-prism>
+											<x-modal>
+												<h3>Modal Demo</h3>
+												<p>Hello, I'm an auto-magical modal, how do you do?</p>
+											</x-modal>
+										</x-code-prism>
+									</div>
+								</x-card>
+							</x-flipbox>
+						</div>
 					</dd>
 					
-					<dt text="Leaflet Map"></dt>
+					<dt text="Leaflet Map"><button title="View demo markup"></button></dt>
 					<dd>
-					
+						<div>
+							<p>
+								Leaflet maps is a popular, open alternative to Google maps
+								that has caught fire in the developer community. This custom map
+								tag  allows you to easily create live map elements declaritively.
+							</p>
+						</div>
+						<div id="map_demo" class="demo">
+							<x-flipbox>
+								<x-card>
+									<div>
+										<x-map id="map_demo_element" data-key="39d2b66f0d5d49dbb52a5b7ad87aea9b"></x-map>
+									</div>
+									<div>
+										<x-code-prism>
+											<x-map data-key="39d2b66f0d5d49dbb52a5b7ad87aea9b"></x-map>
+										</x-code-prism>
+									</div>
+								</x-card>
+							</x-flipbox>
+						</div>
 					</dd>
 				</dl>
 			</div>
 			
 		</div>
+		
+{% endblock %}
+
+{% block bodyEnd %}
+	<x-modal id="modal_demo_element" overlay hide>
+		<div>
+			<h3>Modal Demo</h3>
+			<p>Hello, I'm an auto-magical modal, how do you do?</p>
+			<footer>
+				<button>Hide Modal</button>
+			</footer>
+		</div>
+	</x-modal>
+{% endblock %}
+
+{% block scripts %}
+
+<script type="text/javascript" src="/elements/flipbox/flipbox.js"></script>
+<script type="text/javascript" src="/elements/tabbox/tabbox.js"></script>
+<script type="text/javascript" src="/elements/modal/modal.js"></script>
+<script type="text/javascript" src="/elements/map/map.js"></script>
+
+<script type="text/javascript">
+	xtag.addEvents(document, {
+		'click:touch:delegate(#intro_demos dt button)': function(e){
+			if (this.className == 'flipped') {
+				this.className = '';
+				this.parentNode.nextElementSibling.querySelector('x-flipbox').flipped = false;
+			}
+			else {
+				this.className = 'flipped';
+				this.parentNode.nextElementSibling.querySelector('x-flipbox').flipped = true;
+			}
+		},
+		'click:touch:delegate(#modal_demo table button)': function(){
+			if (this.className == '') {
+				this.className = 'showing';
+				this.innerHTML = 'Hide Modal';
+				document.querySelector('#modal_demo_element').removeAttribute('hide');
+			}
+			else {
+				this.className = '';
+				this.innerHTML = 'Show Modal';
+				document.querySelector('#modal_demo_element').setAttribute('hide', null);
+			}
+		},
+		'click:touch:delegate(#modal_demo_element button)': function(){
+			var button = document.querySelector('#modal_demo table button');
+			button.className = '';
+			button.innerHTML = 'Show Modal';
+			document.querySelector('#modal_demo_element').setAttribute('hide', null);
+		}
+	});
+</script>
 
 {% endblock %}

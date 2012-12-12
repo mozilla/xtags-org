@@ -15,6 +15,7 @@
 		<link rel="stylesheet" type="text/css" href="/elements/panel/panel.css"/>
 		<link rel="stylesheet" type="text/css" href="/elements/ribbon/ribbon.css"/>
 		<link rel="stylesheet" type="text/css" href="/elements/code-prism/code-prism.css"/>
+		{% block styles %}{% endblock %}
 		
 		<link type="text/css" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Righteous" />
 		
@@ -107,6 +108,8 @@
 		</x-slides>
 	</x-slidebox>
 
+{% block bodyEnd %}{% endblock %}
+	
 </body>
 
 <script type="text/javascript">
@@ -145,5 +148,7 @@
 	});
 	
 </script>
+
+{% block scripts %}{% endblock %}
 
 </html>

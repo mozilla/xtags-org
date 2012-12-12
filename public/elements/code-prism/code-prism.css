@@ -26,14 +26,15 @@ pre[class*="language-"] {
 
 /* Code blocks */
 pre[class*="language-"] {
-	padding: 1em;
+	padding: 0 14px 14px;
 	margin: .5em 0;
 	overflow: auto;	
 }
 
 :not(pre) > code[class*="language-"],
 pre[class*="language-"] {
-	background: #f5f2f0;
+	background: #F4F6F9;
+	border: 1px solid rgba(0, 0, 0, 0.15);
 }
 
 /* Inline code */

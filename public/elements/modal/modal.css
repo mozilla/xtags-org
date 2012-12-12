@@ -4,6 +4,7 @@ x-modal {
 	position: fixed;
 	top: 50%;
 	left: 50%;
+	background: #fff;
 	
 	box-sizing: border-box;
 	-o-box-sizing: border-box;
@@ -23,5 +24,9 @@ x-modal[hide]{
 }
 
 x-modal[overlay] {
-	outline: solid 9999px rgba(0,0,0, 0.5);
+	-webkit-box-shadow: 0 0 10000px 10000px rgba(0,0,0,0.5);
+	-moz-box-shadow: 0 0 10000px 10000px rgba(0,0,0,0.5);
+	-ms-box-shadow: 0 0 10000px 10000px rgba(0,0,0,0.5);
+	-o-box-shadow: 0 0 10000px 10000px rgba(0,0,0,0.5);
+	box-shadow: 0 0 10000px 10000px rgba(0,0,0,0.5);
 }

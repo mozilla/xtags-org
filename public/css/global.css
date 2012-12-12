@@ -17,10 +17,14 @@ h1 {
 }
 
 h2 {
-	font-size: 120%;
+	font-size: 125%;
 }
 
 h3 {
+	font-size: 115%;
+} 
+
+h4 {
 	font-size: 110%;
 }
 
@@ -145,6 +149,8 @@ h3 {
 	-o-transition: background-color 0.65s ease 0s;
 	transition: background-color 0.65s ease 0s;
 }
+
+/*** HOME Panel ***/
 
 #intro h2 {
 	margin-bottom: 8px;
@@ -344,8 +350,120 @@ h3 {
 					box-shadow: 0 1px 2px 0px rgba(140, 75, 0, 0.8) inset;
 					background: #F0CD96;
 				}
+
+/*** DEMO CONTENT ***/				
+
+#intro_demos dt button {
+	float: right;
+	width: 24px;
+	height: 24px;
+	background: transparent url(../images/brackets.png) center center;
+	border: none;
+	opacity: 0.5;
+	cursor: pointer;
+}
 	
-/* Media Queries */
+	#intro_demos dt button.flipped {
+		background: transparent url(../images/eye.png) no-repeat center center;
+		opacity: 1.0;
+	}
+	
+	#intro_demos dt button:hover {
+		opacity: 1.0;
+	}
+
+#intro_demos dd {
+	padding: 0 4px 0 14px;
+}
+
+#intro_demos x-flipbox {
+	margin: 0 10px 0;
+}
+	
+#intro_demos dd:after {
+	content: " ";
+	display: block;
+	clear: both;
+}
+
+#intro_demos dd > div {
+	float: left;
+	width: 50%;
+}
+
+#intro_demos dd > div > button {
+	margin-top: 20px;
+	margin: 0 auto;
+	display: table;
+}
+
+#intro_demos x-flipbox {
+	min-height: 125px;
+}
+
+#intro_demos x-card > div > table {
+	margin: 0 auto;
+}
+
+#modal_demo_element {
+	width: 90%;
+	max-width: 350px;
+	border-radius: 4px;
+}
+
+#modal_demo_element > div {
+	padding: 4px 5px;
+	-webkit-box-shadow: 0 4px 16px 4px rgba(0, 0, 0, 0.5);
+	-moz-box-shadow: 0 4px 16px 4px rgba(0, 0, 0, 0.5);
+	-ms-box-shadow: 0 4px 16px 4px rgba(0, 0, 0, 0.5);
+	-o-box-shadow: 0 4px 16px 4px rgba(0, 0, 0, 0.5);
+	box-shadow: 0 4px 16px 4px rgba(0, 0, 0, 0.5);
+}
+
+#modal_demo_element p {
+	padding: 12px;
+}
+
+#map_demo x-flipbox {
+	min-height: 200px;
+}
+
+#map_demo_element {
+	height: 200px;
+	width: 100%;
+}
+
+/*** DOCS PANEL ***/
+
+x-panel[src="/docs"] dd {
+	margin: 0 0 32px;
+}
+
+x-panel[src="/docs"] dd:last-child {
+	margin: 0;
+}		
+
+x-panel[src="/docs"] h4 {
+	margin: 0 0 8px;
+}
+
+x-panel[src="/docs"] h4  code {
+	font-size: 110%;
+	background: #eee;
+	padding: 2px 4px;
+	margin: 0 8px 0 0;
+	border: 1px solid #ccc;
+	text-shadow: 0 1px 0 #fff;
+	font-weight: bold;
+	border-radius: 3px;
+}
+
+x-panel[src="/docs"] h4  span {
+	color: #666;
+	font-style: italic;
+}
+
+/* MEDIA QUERIES */
 
 @media all and (max-width: 450px) {
 	#code_options > div {

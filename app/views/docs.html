@@ -6,13 +6,10 @@
   <div class="block">
     <x-ribbon>How it Works</x-ribbon>
     <p>
-      In order to allow for the recognition and parsing of custom HTML tags, <span class="font">X-Tag</span> utilizes 
-      a special CSS event mechanism to listen for the creation/parsing of new custom elements (details <a target="_blank" href="http://www.backalleycoder.com/2012/04/25/i-want-a-damnodeinserted/">here</a>). 
-      This event is fired and processed by <span class="font">X-Tag</span> regardless of whether the element is present 
-      in the source of the document, added by setting <code>innerHTML</code>, or generated dynamically using <code>document.createElement</code>. 
-      When the element is initially created, <span class="font">X-Tag</span> inflates it and calls the <code>onCreate</code> 
-      lifecycle function. <span class="font">X-Tag</span> also provides an <code>onInsert</code> lifecycle function that is run each time 
-      the element is injected into the DOM. Here's an example with some comments for a bit more clarity:
+      In order to allow for the recognition and parsing of custom HTML tags, <span class="font">X-Tag</span> relies on a variety
+	  of events to detect and upgrade elements with user-defined, extended functionality. X-Tag is works regardless of whether the element was present
+      in the original source of the document, added by setting <code>innerHTML</code>, or generated dynamically using <code>document.createElement</code>. 
+      Here's an example showing the registration of a custom element, with a description of each of the foundational interfaces the API offers:
     </p>
       
     

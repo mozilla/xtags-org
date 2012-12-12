@@ -40,7 +40,6 @@
 		},
 		events: {
 			'modalhide:preventable': function(){
-				console.log("hiddding");
 				this.setAttribute('hide', '');
 			}
 		}
