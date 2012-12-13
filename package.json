@@ -8,6 +8,6 @@
     "settings": "0.1.0",
     "express": "3.0.3",
     "async": "0.1.22",
-    "nunjucks": "0.1.6"
+    "nunjucks": "git://github.com/jlongster/nunjucks.git#049cf8"
   }
 }
