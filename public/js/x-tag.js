@@ -166,6 +166,7 @@
       attribute: {
         onAdd: function(pseudo){
           this.xtag.attributeSetters = this.xtag.attributeSetters || {};
+          pseudo.value = pseudo.value || pseudo.key.split(':')[0];
           this.xtag.attributeSetters[pseudo.value] = pseudo.key.split(':')[0];
         },
         listener: function(pseudo, fn, args){
@@ -216,9 +217,8 @@
           }
         },
         setters: {
-          src: function(src){
-            if (src){
-              this.setAttribute('src', src);
+          'src:attribute': function(src){
+            if (src){              
               xtag.request(this, { url: src, method: 'GET' });
             }
           },
