@@ -357,52 +357,81 @@ h4 {
 	float: right;
 	width: 24px;
 	height: 24px;
-	background: transparent url(../images/brackets.png) center center;
+	margin-right: 10px;
+	background: transparent url(../images/eye.png) no-repeat center center;
 	border: none;
-	opacity: 0.5;
+	opacity: 0.4;
 	cursor: pointer;
 }
-	
-	#intro_demos dt button.flipped {
-		background: transparent url(../images/eye.png) no-repeat center center;
-		opacity: 1.0;
+
+	#intro_demos dt button[title="markup"] {
+		background-image: url(../images/brackets.png);
 	}
 	
 	#intro_demos dt button:hover {
-		opacity: 1.0;
+		opacity: 0.8;
+	}
+	
+	#intro_demos dt button[selected] {
+		opacity: 1.0 !important;
 	}
 
 #intro_demos dd {
-	padding: 0 4px 0 14px;
-}
-
-#intro_demos x-flipbox {
-	margin: 0 10px 0;
+	margin: 10px;
+	height: 110px;
+	overflow: hidden;
 }
 	
-#intro_demos dd:after {
-	content: " ";
-	display: block;
-	clear: both;
-}
+	#intro_demos dd:after {
+		content: " ";
+		display: block;
+		clear: both;
+	}
 
-#intro_demos dd > div {
+#intro_demos .demo-view > p, #intro_demos .demo-view > div {
 	float: left;
 	width: 50%;
 }
 
-#intro_demos dd > div > button {
-	margin-top: 20px;
-	margin: 0 auto;
-	display: table;
+#intro_demos .demo-element {
+	margin: 0 0 10px 10px;
 }
 
-#intro_demos x-flipbox {
-	min-height: 125px;
+#intro_demos table.demo-element {
+	margin: 0 auto;
 }
 
-#intro_demos x-card > div > table {
-	margin: 0 auto;
+#intro_demos .demo-markup {
+	clear: both;
+	display: none;
+}
+
+#intro_demos dd.markup .demo-view {
+	display: none;
+}
+
+#intro_demos dd.markup .demo-markup {
+	display: block;
+}
+
+#panel_demo_element {
+	padding: 20px;
+	background: #eee;
+	border: 1px solid #aaa;
+	cursor: pointer;
+	transition: 1s;
+	-o-transition: 1s;
+	-ms-transition: 1s;
+	-moz-transition: 1s;
+	-webkit-transition: 1s;
+}
+
+#panel_demo_element[src="elements/panel/demo/panel-content.html"][readystate="4"] {
+	background-color: #58F48C;
+}
+
+#panel_demo_element[src="elements/panel/demo/panel-content2.html"][readystate="4"] {
+	background-color: #CBDDEF;
 }
 
 #modal_demo_element {
@@ -424,13 +453,9 @@ h4 {
 	padding: 12px;
 }
 
-#map_demo x-flipbox {
-	min-height: 200px;
-}
-
 #map_demo_element {
 	height: 200px;
-	width: 100%;
+	border: 1px solid #aaa;
 }
 
 /*** DOCS PANEL ***/

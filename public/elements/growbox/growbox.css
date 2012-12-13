@@ -1,0 +1,19 @@
+x-growbox {
+	display: block;
+	height: auto;
+	width: auto;
+	overflow: hidden;
+}
+
+x-growbox > div, x-growbox > div > div, x-growbox > div > div > div { 
+	overflow: hidden;
+}
+
+x-growbox > div {
+	-webkit-transition: height 0.65s, width 0.65s;
+	-moz-transition: height 0.65s, width 0.65s;
+	-ms-transition: height 0.65s, width 0.65s;
+	-o-transition: height 0.65s, width 0.65s;
+	transition: height 0.65s, width 0.65s;
+}
+

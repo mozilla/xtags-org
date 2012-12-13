@@ -1,7 +1,7 @@
 
 xtag.register('x-tabbox', {
 	events: {
-		'tap:delegate(x-tab)': function(event){
+		'click:touch:delegate(x-tab)': function(event){
 			this.selectTab();
 		},
 		'keydown:delegate(x-tab)': function(event){
@@ -21,7 +21,7 @@ xtag.register('x-tabs', {
 			return tabs.indexOf(this.getSelectedTab());
 		},
 		getSelectedTab: function(){
-			return xtag.query(this, 'x-tab[selected="true"]')[0];
+			return xtag.query(this, 'x-tab[selected]')[0];
 		},
 		nextTab: function(){
 			var tab = this.getSelectedTab();
@@ -45,10 +45,10 @@ xtag.register('x-tab', {
 			var tabs = xtag.query(this.parentNode, 'x-tab'),
 				index = tabs.indexOf(this);
 			tabs.forEach(function(el){
-				el.setAttribute('selected', el == this ? true : '');
+				el == this ? el.setAttribute('selected', null) : el.removeAttribute('selected');
 			}, this);
 			xtag.query(this.parentNode.parentNode, 'x-tabpanels > *').forEach(function(el, i, array){
-				el.setAttribute('selected', el == array[index] ? true : '');
+				el == array[index] ? el.setAttribute('selected', null) : el.removeAttribute('selected');
 			});
 		}
 	}

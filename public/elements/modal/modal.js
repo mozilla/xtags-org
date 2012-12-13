@@ -15,7 +15,7 @@
 
 	window.addEventListener('keyup', function(event){
 		if(event.keyCode == 27) xtag.query(document, 'x-modal[esc-hide]').forEach(function(modal){
-			if (modal.getAttribute('hide') == null) xtag.fireEvent(modal, 'modalhide');
+			if (modal.getAttribute('hidden') == null) xtag.fireEvent(modal, 'modalhide');
 		});
 	});
 
@@ -40,7 +40,15 @@
 		},
 		events: {
 			'modalhide:preventable': function(){
-				this.setAttribute('hide', '');
+				this.setAttribute('hidden', null);
+			}
+		},
+		methods: {
+			hide: function(){
+				this.setAttribute('hidden', null);
+			},
+			show: function(){
+				this.removeAttribute('hidden');
 			}
 		}
 	});

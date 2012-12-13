@@ -28,7 +28,7 @@ x-tab {
 	cursor: default;
 }
 
-x-tab[selected="true"] {
+x-tab[selected] {
 	text-decoration: underline;
 }
 
@@ -36,7 +36,7 @@ x-tabpanels > x-tabpanel {
 	display: none;
 }
 
-x-tabpanels, x-tabpanels > *[selected="true"] {
+x-tabpanels, x-tabpanels > *[selected] {
 	display: block;
 }
 

@@ -35,7 +35,6 @@
   * css: "-webkit-"
   * dom: "WebKit"
   * js: "Webkit"
-  * keyframes: true
   * lowercase: "webkit"  
   * }
   */
@@ -110,6 +109,16 @@
     click: 'touchend'
   };
   
+  var flowEvent = function(type){
+    var flow = type == 'over';
+    return {
+	  base: 'OverflowEvent' in window ? 'overflowchanged' : type + 'flow',
+	  condition: function(event){
+	    return event.type == (type + 'flow') || ((event.orient == 0 && event.horizontalOverflow == flow) || (event.orient == 1 && event.verticalOverflow == flow))
+	  }
+	}
+  };
+  
   var xtag = {
     tags: {},
     tagList: [],
@@ -122,6 +131,7 @@
     _matchSelector: document.documentElement.matchesSelector ||
       document.documentElement.mozMatchesSelector ||
       document.documentElement.webkitMatchesSelector,
+	_register: document.register,
     tagOptions: {
       content: '',
       mixins: [],
@@ -130,23 +140,32 @@
       getters: {},
       setters: {},
       onCreate: function(){},
+	  onUpgrade: function(){},
       onInsert: function(){}
     },
 
-    eventMap: {
-      animationstart: [
-        'animationstart', 
-        'oAnimationStart', 
-        'MSAnimationStart', 
-        'webkitAnimationStart'
-      ],
-      transitionend: [
-        'transitionend', 
-        'oTransitionEnd', 
-        'MSTransitionEnd', 
-        'webkitTransitionEnd'
-      ], 
-      tap: [ 'ontouchend' in doc ? 'touchend' : 'mouseup']
+    customEvents: {
+      animationstart: {
+        base: [
+          'animationstart', 
+          'oAnimationStart', 
+          'MSAnimationStart', 
+          'webkitAnimationStart'
+        ]
+      },
+      transitionend: {
+        base: [
+          'transitionend', 
+          'oTransitionEnd', 
+          'MSTransitionEnd', 
+          'webkitTransitionEnd'
+        ]
+      },
+	  overflow: flowEvent('over'),
+	  underflow: flowEvent('under'),
+      tap: {
+	    base: 'ontouchend' in doc ? 'touchend' : 'mouseup'
+	  }
     },
     pseudos: {
       delegate: {
@@ -166,6 +185,7 @@
       attribute: {
         onAdd: function(pseudo){
           this.xtag.attributeSetters = this.xtag.attributeSetters || {};
+          pseudo.value = pseudo.value || pseudo.key.split(':')[0];
           this.xtag.attributeSetters[pseudo.value] = pseudo.key.split(':')[0];
         },
         listener: function(pseudo, fn, args){
@@ -211,14 +231,16 @@
           this.src = this.getAttribute('src');
         },
         getters: {
+		  src: function(){
+		    return this.getAttribute('src');
+		  },
           dataready: function(){
             return this.xtag.dataready;
           }
         },
         setters: {
-          src: function(src){
-            if (src){
-              this.setAttribute('src', src);
+          'src:attribute': function(src){
+            if (src){              
               xtag.request(this, { url: src, method: 'GET' });
             }
           },
@@ -250,7 +272,7 @@
     */
     toArray: function(obj){
       var sliced = Array.prototype.slice.call(obj, 0);
-      return sliced.hasOwnProperty ? sliced : [obj];
+      return ['number', 'string', 'function'].indexOf(typeof obj) == -1 ? sliced : [obj];
     },
 
     /**
@@ -467,6 +489,8 @@
         xtag.addEvents(element, options.events);
         if (options.content) element.innerHTML = options.content;
         options.onCreate.call(element);
+		options.onUpgrade.call(element);
+		if (!xtag._register) xtag.fireEvent(element, 'elementupgrade');
       }
     },
 
@@ -574,7 +598,6 @@
               value: value
             };
           if (pseudo.onRemove) pseudo.onRemove.call(element, split, lastPseudo);
-          
         });
       }
     },
@@ -584,7 +607,7 @@
       var last = element.xtag.request || {};
         element.xtag.request = options;
       var request = element.xtag.request,
-        callbackKey = element.getAttribute('data-callback-key') ||
+        callbackKey = element.getAttribute('callback-key') ||
           'callback' + '=xtag.callbacks.';
       if (xtag.fireEvent(element, 'beforerequest') === false) return false;
       if (last.url && !options.update && 
@@ -598,7 +621,7 @@
       if (xtag.anchor.hostname == win.location.hostname) {
         request = xtag.merge(new XMLHttpRequest(), request);
         request.onreadystatechange = function(){
-          element.setAttribute('data-readystate', request.readyState);
+          element.setAttribute('readystate', request.readyState);
           if (request.readyState == 4 && request.status < 400){
             xtag.requestCallback(element, request);
           }
@@ -616,7 +639,7 @@
       }
       else {
         var callbackID = request.callbackID = 'x' + new Date().getTime();
-        element.setAttribute('data-readystate', request.readyState = 0);
+        element.setAttribute('readystate', request.readyState = 0);
         xtag.callbacks[callbackID] = function(data){
           request.status = 200;
           request.readyState = 4;
@@ -630,8 +653,8 @@
         request.script.src = options.url = options.url + 
           (~options.url.indexOf('?') ? '&' : '?') + callbackKey + callbackID;
         request.script.onerror = function(error){
-          element.setAttribute('data-readystate', request.readyState = 4);
-          element.setAttribute('data-requeststatus', request.status = 400);
+          element.setAttribute('readystate', request.readyState = 4);
+          element.setAttribute('requeststatus', request.status = 400);
           xtag.fireEvent(element, 'error', error);
         }
         head.appendChild(request.script);
@@ -641,8 +664,8 @@
     
     requestCallback: function(element, request){
       if (request != element.xtag.request) return xtag;
-      element.setAttribute('data-readystate', request.readyState);
-      element.setAttribute('data-requeststatus', request.status);         
+      element.setAttribute('readystate', request.readyState);
+      element.setAttribute('requeststatus', request.status);         
       xtag.fireEvent(element, 'dataready', { request: request });
       if (element.dataready) element.dataready.call(element, request);
     },
@@ -655,14 +678,32 @@
       }
       else if (req.abort) req.abort();
     },
-  
+
+	parseEvent: function(type){
+		var pseudos = type.split(':'),
+		    key = pseudos.shift(),
+	        event = xtag.merge({
+	            base: key,
+	            pseudos: '',
+	            onAdd: function(){},
+	            onRemove: function(){},
+	            condition: function(){},
+			}, xtag.customEvents[key] || {});
+		event.type = key + (event.pseudos ? ':' + event.pseudos : '') + (pseudos ? ':' + pseudos.join(':') : '');
+		return event;
+	},
+	
     addEvent: function(element, type, fn){
-      var eventKey = type.split(':')[0],
-        eventMap = xtag.eventMap[eventKey] || [eventKey];
-      var wrapped = xtag.applyPseudos(element, type, fn);
-      eventMap.forEach(function(name){
-        element.addEventListener(name, 
-          wrapped, !!~['focus', 'blur'].indexOf(name));
+      var event = xtag.parseEvent(type),
+        chained = xtag.applyPseudos(element, event.type, fn),
+        wrapped = function(){
+          var args = xtag.toArray(arguments);
+          if (event.condition.apply(this, args) === false) return false;
+          return chained.apply(this, args);
+        };
+      event.onAdd.call(element, event, wrapped);
+      xtag.toArray(event.base).forEach(function(name){
+        element.addEventListener(name, wrapped, !!~['focus', 'blur'].indexOf(name));
       });
       return wrapped;
     },
@@ -672,9 +713,10 @@
     },
   
     removeEvent: function(element, type, fn){
-      var eventKey = type.split(':')[0],
-        eventMap = xtag.eventMap[eventKey] || [eventKey];   
-      eventMap.forEach(function(name){
+      var event = xtag.parseEvent(type);
+      event.onRemove.call(element, event, fn);
+      xtag.removePseudos(element, event.type, fn);
+      xtag.toArray(event.base).forEach(function(name){
         element.removeEventListener(name, fn);
       });
     },
