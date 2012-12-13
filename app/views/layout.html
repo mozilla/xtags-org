@@ -148,7 +148,7 @@
 		'click:touch:delegate(#registry_elements)': function(){
 			slidePage(3);
 		}, 
-		'click:touch:delegate(#search)': function(){
+		'click:touch:delegate(#search_btn)': function(){
 			
 			var elem = document.getElementById('search_result_json_p');
 			if (!elem){
@@ -156,14 +156,15 @@
 				document.body.appendChild(elem);
 			}
 			category = [];
-			var query = document.getElementById('query').value.replace(/#(\w+)/g, function(match,group1,idx){
+			var query = document.getElementById('search_query').value.replace(/#(\w+)/g, function(match,group1,idx){
 				category.push(group1);
 				return '';
 			});
-
 			elem.src = "http://registry.x-tags.org/search?callback=search_results&query=" + 
 				query + "&category=" + category.join(',');
-
+		},
+		'keydown:keypass(13):delegate(#search_query)': function(e){
+			xtag.fireEvent(document.getElementById('search_btn'), 'click');
 		}
 	});
 
