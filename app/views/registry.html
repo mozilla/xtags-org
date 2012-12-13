@@ -2,10 +2,20 @@
 {# extends "layout.html" #}
 
 {% block registry %}
+
+
 <div class="limit">
-  	<div class="block">
+  	<div class="block registry">
     	<x-ribbon>Registry</x-ribbon>
-    	<p>Discover and share X-Tags on our registry at <a href="http://registry.x-tags.org">registry.x-tags.org</a>.</p>
+    	
+    	<div id="search_box">
+    		<input id="search_query" type="text" /><button id="search_btn">Search</button>
+    	</div>
+    	<div id="search_results">
+    	</div>
 	</div>
 </div>
-{% endblock%}
+
+
+
+{% endblock %}

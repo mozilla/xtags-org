@@ -1,0 +1,40 @@
+<x-template name="search-item">
+	<script type="template/script">
+	</script>
+	<script type="template/content">
+	{% raw %}
+		<div class="tag-header">
+			<h3>
+				<a class="tag-name" target="_blank" href="http://registry.x-tags.org/{{registry_path}}/view">{{ name }}</a>
+				<span class="tag-author">by <a target="_blank" href="{{repo}}">{{author}}</a>
+				</span>
+			</h3>
+			<ul class="tag-categories">
+				{% for cat in category %}
+					<li>{{ cat }}</li>
+				{% endfor %}
+			</ul>
+		</div>
+		<p class="tag-description">{{description}}</p>
+	{% endraw %}
+	</script>
+</x-template>
+
+<script type="text/javascript">
+
+	document.addEventListener('DOMComponentsLoaded', function(){
+		document.getElementsByName('search-item')[0].renderer = function(elem, template, data){
+			data.registry_path = data.repo.replace('https://github.com/','') + '/' + data.tag_name;
+			var tmpl = new nunjucks.Template(template);
+			return tmpl.render(data);
+		};	
+	});
+
+	xtag.register('x-search-result',{
+		mixins: ['template'],
+		onCreate: function(){
+			this.setAttribute('template','search-item');
+		}
+	});
+
+</script>

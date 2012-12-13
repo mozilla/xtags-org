@@ -3,7 +3,7 @@
 
 {% block docs %}
 <div class="limit">
-  <div class="block">
+  <div class="block docs">
     <x-ribbon>How it Works</x-ribbon>
     <p>
       In order to allow for the recognition and parsing of custom HTML tags, <span class="font">X-Tag</span> relies on a variety
@@ -199,6 +199,68 @@ xtag.register('superinput', {
 
       </dd> 
     </dl>
+  </div>
+
+  <div class="block">
+    <x-ribbon>Helpers</x-ribbon>
+
+    <p>The X-Tag library comes with just enough helper methods to make it bearable to work in Vanilla JS.<p>
+      <br/>
+      <br/>
+      <br/>
+      <dl>
+        <dd>
+          <h4><code>toArray</code><span>object</span></h4>
+          Converts the given object into an array.
+        </dd>
+
+        <dd>
+          <h4><code>hasClass</code><span>element,className</span></h4>
+          Returns a boolean that indicates if the element has the specified class.
+        </dd>
+
+        <dd>
+          <h4><code>addClass</code><span>element,className</span></h4>
+          Adds a class to the element.
+        </dd>
+
+        <dd>
+          <h4><code>removeClass</code><span>element,className</span></h4>
+          Removes a class from the element.
+        </dd>
+
+        <dd>
+          <h4><code>toggleClass</code><span>element,className</span></h4>
+          Adds the class if it doesn't exist on an element or removes the class if it exists.
+        </dd>
+
+        <dd>
+          <h4><code>matchesSelector</code><span>element,selector</span></h4>
+          Returns a boolean that indicates if the given selector matches the element.
+<x-code-prism data-lang="javascript">
+  if(xtag.matchesSelector(element, '.foo')){
+    // matches
+  }else{
+    // doesn't match
+  }
+</x-code-prism>
+        </dd>
+
+
+        <dd>
+          <h4><code>query</code><span>element,selector</span></h4>
+            Runs querySelector all on the given element and returns the results as an array.
+<x-code-prism data-lang="javascript">
+  
+  xtag.query(element, '.foo').forEach(function(elem){
+    // iterate over matches
+  });
+
+</x-code-prism>
+        </dd>
+
+        
+      </dl>
   </div>
 
   <div class="block">

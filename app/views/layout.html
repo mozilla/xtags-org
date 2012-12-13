@@ -15,15 +15,18 @@
 		<link rel="stylesheet" type="text/css" href="/elements/panel/panel.css"/>
 		<link rel="stylesheet" type="text/css" href="/elements/ribbon/ribbon.css"/>
 		<link rel="stylesheet" type="text/css" href="/elements/code-prism/code-prism.css"/>
+		<link rel="stylesheet" type="text/css" href="/elements/template/template.css"/>
 		{% block styles %}{% endblock %}
 		
 		<link type="text/css" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Righteous" />
 		
 		<script type="text/javascript" src="/js/x-tag.js"></script>
+		<script type="text/javascript" src="/js/nunjucks-dev.js"></script>
 		<script type="text/javascript" src="/elements/slidebox/slidebox.js"></script>
 		<script type="text/javascript" src="/elements/panel/panel.js"></script>
 		<script type="text/javascript" src="/elements/ribbon/ribbon.js"></script>
 		<script type="text/javascript" src="/elements/code-prism/code-prism.js"></script>
+		<script type="text/javascript" src="/elements/template/template.js"></script>
 	</head>
 
 <body>
@@ -144,11 +147,40 @@
 		},
 		'click:touch:delegate(#registry_elements)': function(){
 			slidePage(3);
+		}, 
+		'click:touch:delegate(#search_btn)': function(){
+			
+			var elem = document.getElementById('search_result_json_p');
+			if (!elem){
+				elem = document.createElement('script');
+				document.body.appendChild(elem);
+			}
+			category = [];
+			var query = document.getElementById('search_query').value.replace(/#(\w+)/g, function(match,group1,idx){
+				category.push(group1);
+				return '';
+			});
+			elem.src = "http://registry.x-tags.org/search?callback=search_results&query=" + 
+				query + "&category=" + category.join(',');
+		},
+		'keydown:keypass(13):delegate(#search_query)': function(e){
+			xtag.fireEvent(document.getElementById('search_btn'), 'click');
 		}
 	});
+
+	window.search_results = function(results){
+		var container = document.getElementById('search_results');
+		container.innerHTML = "";
+		results.data.forEach(function(row){
+			var item = document.createElement('x-search-result');
+			item.templateData = row;
+			container.appendChild(item);
+		});
+	}
 	
 </script>
 
 {% block scripts %}{% endblock %}
+{% include "templates/search_result.html" %}
 
 </html>
