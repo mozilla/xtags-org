@@ -117,6 +117,12 @@
 
 <script type="text/javascript">
 	
+	document.addEventListener('DOMComponentsLoaded', function(){
+		xtag.query(document, 'x-slide[name="registry"] > x-panel')[0].addEventListener('load', function(){
+			 xtag.fireEvent(document.getElementById('search_btn'), 'click');
+		});
+	});
+
 	introImageLoads = 0;
 	introAnimation = function(){
 		introImageLoads++;
@@ -146,7 +152,7 @@
 			slidePage(index);
 		},
 		'click:touch:delegate(#registry_elements)': function(){
-			slidePage(3);
+			slidePage(2);
 		}, 
 		'click:touch:delegate(#search_btn)': function(){
 			
