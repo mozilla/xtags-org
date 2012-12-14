@@ -11,12 +11,21 @@ Prism.languages.javascript=Prism.languages.extend("clike",{keyword:/\b(var|let|i
 //Prism.highlightElement(code, form.elements.async.checked);
 
 xtag.register('x-code-prism', {
-	onCreate: function(){		
-		this.codeContent = this.textContent;
+	onCreate: function(){
+		if (this.innerHTML.match(/&lt;/)){
+			this.codeContent = this.innerHTML;
+		} else {
+			this.codeContent = this.textContent;
+		}
 	}, 
 	setters:{
 		'codeContent': function(code){
-			this.innerHTML = '<pre><code class="language-'+ (this.getAttribute('language') || 'javascript') +'">' + code + '</code></pre>';
+			/*code = code.replace(/([<>])/g, function(m,g1){
+				return g1 == '<' ? '&lt;' : '&gt;';
+			});*/
+			this.innerHTML = '<pre><code class="language-'+ 
+				(this.getAttribute('language') || 'javascript') +'">' + 
+					code + '</code></pre>';
 			
 			Prism.highlightElement(this.firstChild.firstChild, false);
 		}
