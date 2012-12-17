@@ -1,69 +1,53 @@
 
 (function(){
-
-/* 	xtag.register('x-growbox', {
-		onCreate: function(){
-			var first = document.createElement('div');
-				second = document.createElement('div');
-				
-			while (this.firstChild) second.appendChild(this.removeChild(this.firstChild));
-			
-			xtag.addEvent(first, 'overflow', function(e){
-				this.parentNode.adjustDimensions(e);
+	
+	var flowEvent = function(){
+			var growbox = this.parentNode.parentNode;
+			if (growbox.tagName == 'X-GROWBOX') growbox.matchDimensions();
+		},
+		createFlowElements = function(wrap){
+			['overflow', 'underflow'].forEach(function(type){
+				if (!wrap.xtag[type + 'Element']) {
+					var element = document.createElement('div');
+						element.className = 'x-grow-' + type;
+						element.innerHTML = '<div></div>';
+						xtag.addEvent(element, type, flowEvent);
+					wrap.xtag[type + 'Element'] = element;
+					wrap.appendChild(element);
+				}
 			});
-			xtag.addEvent(second, 'underflow', function(e){
-				this.parentNode.parentNode.adjustDimensions(e);
-			});
-			
-			first.appendChild(second);
-			this.appendChild(first, true);
-			this.adjustDimensions({});
-		},
-		setters: {
-			'innerHTML': function(html) {
-				return this.firstChild.innerHTML = html;
-			}, 
-			'textContent': function(text) {
-				return this.firstChild.textContent = text;
-			},
-			scrollHeight: function(){
-				console.log('scrollHeight');
-			}
-		},
-		getters:{
-			'innerHTML': function() {
-				return this.firstChild.innerHTML;
-			}, 
-			'textContent': function() {
-				return this.firstChild.textContent;
-			}
-		},
+		};
+	
+ 	xtag.register('x-growbox', {
 		methods: {
-			appendChild: function(child, top){
-				top ? HTMLElement.prototype.appendChild.call(this, child) : this.firstChild.appendChild(child);
-			},
-			adjustDimensions: function(e){
-				console.log(e, e.target);
-				var first = this.firstChild,
-					second = first.firstChild;
-				second.style.height = second.scrollHeight + 1 + 'px';
-				second.style.width = second.scrollWidth + 1 +  'px';
-				first.style.height = first.scrollHeight - 1 + 'px';
-				first.style.width = first.scrollWidth - 1 +  'px';
+			matchDimensions: function(){
+				var wrap = this.firstElementChild;
+				if (wrap.tagName == 'X-GROW-WRAP') createFlowElements(wrap);
+				else return false;
+				this.style.height = wrap.scrollHeight + 'px';
+				wrap.xtag.overflowElement.firstChild.style.height = wrap.scrollHeight - 1 + 'px';
+				wrap.xtag.underflowElement.firstChild.style.height = wrap.scrollHeight + 1 + 'px';
 			}
 		},
 		events:{
-			'overflow': function(e){
-				this.adjustDimensions(e);
+			'resize': function(e){
+				console.log(e);
 			},
-			'underflow': function(e){
-				this.adjustDimensions(e);
+			'overflow': function(){
+				this.matchDimensions();
 			},
-			'transitionend': function(e){			
-				second.style.height = 'auto';
-				second.style.width = 'auto';
+			'underflow': function(){
+				this.matchDimensions();
 			}
 		}
-	}); */
-
+	});
+	
+	xtag.register('x-grow-wrap', {
+		onUpgrade: function(){
+			console.log('upgrade');
+			createFlowElements(this);
+			if (this.parentNode.tagName == 'X-GROWBOX') this.parentNode.matchDimensions();
+		}
+	});
+	
 })();

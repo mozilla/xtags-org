@@ -1,19 +1,33 @@
+
 x-growbox {
 	display: block;
 	height: auto;
 	width: auto;
 	overflow: hidden;
+	-webkit-transition: height ease 0.4s;
+	-moz-transition: height ease 0.4s;
+	-ms-transition: height ease 0.4s;
+	-o-transition: height ease 0.4s;
+	transition: height ease 0.4s;
 }
 
-x-growbox > div, x-growbox > div > div, x-growbox > div > div > div { 
+x-grow-wrap {
+	position: relative;
+	display: block;
 	overflow: hidden;
 }
 
-x-growbox > div {
-	-webkit-transition: height 0.65s, width 0.65s;
-	-moz-transition: height 0.65s, width 0.65s;
-	-ms-transition: height 0.65s, width 0.65s;
-	-o-transition: height 0.65s, width 0.65s;
-	transition: height 0.65s, width 0.65s;
-}
+	.x-grow-overflow, .x-grow-underflow {
+		position: absolute;
+		top: 0;
+		left: -1px;
+		width: 1px;
+		height: 100%;
+		overflow: hidden;
+		visibility: hidden;
+		z-index: -1;
+	}
 
+x-grow-content {
+	display: block;
+}

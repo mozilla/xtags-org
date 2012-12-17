@@ -41,79 +41,26 @@
 <body>
 
 	<x-growbox id="growbox">
-		<div class="over">
-			<div class="under">
+		<x-grow-wrap>
+			<x-grow-content>
 				<h1>Hello</h1>
 				<p class="ph1">All the railway lines north of the Thames and the South-Eastern people at Cannon Street had been warned by midnight on Sunday, and trains were being filled.  People were fighting savagely for standing-room in the carriages even at two o'clock.  By three, people were being trampled and crushed even in Bishopsgate Street, a couple of hundred yards or more from Liverpool Street station; revolvers were fired, people stabbed, and the policemen who had been sent to direct the traffic, exhausted and infuriated, were breaking the heads of the people they were called out to protect.</p>
 				<p>And as the day advanced and the engine drivers and stokers refused to return to London, the pressure of the flight drove the people in an ever-thickening multitude away from the stations and along the northward-running roads.  By midday a Martian had been seen at Barnes, and a cloud of slowly sinking black vapour drove along the Thames and across the flats of Lambeth, cutting off all escape over the bridges in its sluggish advance.  Another bank drove over Ealing, and surrounded a little island of survivors on Castle Hill, alive, but unable to escape.</p>
-			</div>
-		</div>
+			</x-grow-content>
+		</x-grow-wrap>
 	</x-growbox>
 
 </body>
 
 <script type="text/javascript">
-	var growbox = document.getElementById('growbox'),
-		first = growbox.firstElementChild,
-		second = first.firstElementChild,
-		count = 0;
+	var growbox = document.getElementById('growbox');
 	
-	growbox.xtag = { lastFlow: {} };
-	first.style.height = first.scrollHeight + 0 + 'px';
-	first.style.width = first.scrollWidth + 0 +  'px';
-	
-	xtag.addEvents(first, {
+	xtag.addEvents(growbox, {
 		'click': function(e){
 			growbox.className = !growbox.className ? 'big' : growbox.className == 'big' ? 'bigger' : '';
-		},
-		'overflow': function(e){
-			console.log(e, 'first');
-			if (growbox.xtag.lastFlow.type != 'overflow' && growbox.xtag.lastFlow.target != second) {
-				first.style.height = second.scrollHeight + 1 + 'px';
-				first.style.width = second.scrollWidth + 1 +  'px';
-				second.style.height = second.scrollHeight - 1 + 'px';
-				second.style.width = second.scrollWidth - 1 +  'px';
-				growbox.xtag.lastFlow = e;
-			}
-		},
-		'underflow': function(e){
-			console.log(e, 'second');
-			if (growbox.xtag.lastFlow.type != 'overflow' && growbox.xtag.lastFlow.target != first) {
-				first.style.height = second.scrollHeight + 1 + 'px';
-				first.style.width = second.scrollWidth + 1 +  'px';
-				second.style.height = second.scrollHeight + 1 + 'px';
-				second.style.width = second.scrollWidth + 1 +  'px';
-				growbox.xtag.lastFlow = e;
-			}
 		}
 	});
 	
-	xtag.addEvents(second, {
-		'overflow': function(e){
-			console.log(e, 'second');
-			if (growbox.xtag.lastFlow.type != 'underflow' && growbox.xtag.lastFlow.target != second) {
-				first.style.height = second.scrollHeight + 1 + 'px';
-				first.style.width = second.scrollWidth + 1 +  'px';
-				second.style.height = second.scrollHeight + 1 + 'px';
-				second.style.width = second.scrollWidth + 1 +  'px';
-				growbox.xtag.lastFlow = e;
-			}
-		},
-		'underflow': function(e){
-			console.log(e, 'second');
-			if (growbox.xtag.lastFlow.type != 'overflow' && growbox.xtag.lastFlow.target != first) {
-				first.style.height = second.scrollHeight + 1 + 'px';
-				first.style.width = second.scrollWidth + 1 +  'px';
-				second.style.height = second.scrollHeight - 1 + 'px';
-				second.style.width = second.scrollWidth - 1 +  'px';
-				growbox.xtag.lastFlow = e;
-			}
-			if (growbox.xtag.lastFlow.type != 'underflow' && growbox.xtag.lastFlow.target != second) {
-			
-			}
-		}
-	});
-
 </script>
 
 </html>

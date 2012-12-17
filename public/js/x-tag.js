@@ -114,7 +114,10 @@
     return {
 	  base: 'OverflowEvent' in window ? 'overflowchanged' : type + 'flow',
 	  condition: function(event){
-	    return event.type == (type + 'flow') || ((event.orient == 0 && event.horizontalOverflow == flow) || (event.orient == 1 && event.verticalOverflow == flow))
+	    return event.type == (type + 'flow') ||
+	            ((event.orient == 0 && event.horizontalOverflow == flow) || 
+	            (event.orient == 1 && event.verticalOverflow == flow) || 
+	            (event.orient == 2 && event.horizontalOverflow == flow && event.verticalOverflow == flow));
 	  }
 	}
   };
