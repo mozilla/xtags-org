@@ -5,6 +5,7 @@
 		<meta charset="utf-8" />
 		
 		<title>X-Tag - Web Components Custom Element Polylib</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 		<link href="images/shortcut.png" rel="shortcut icon" type="image/x-icon" />
 		
 		<link rel="stylesheet" type="text/css" href="/css/reset.css" />
@@ -117,6 +118,12 @@
 
 <script type="text/javascript">
 	
+	document.addEventListener('DOMComponentsLoaded', function(){
+		xtag.query(document, 'x-slide[name="registry"] > x-panel')[0].addEventListener('load', function(){
+			 xtag.fireEvent(document.getElementById('search_btn'), 'click');
+		});
+	});
+
 	introImageLoads = 0;
 	introAnimation = function(){
 		introImageLoads++;
@@ -146,7 +153,7 @@
 			slidePage(index);
 		},
 		'click:touch:delegate(#registry_elements)': function(){
-			slidePage(3);
+			slidePage(2);
 		}, 
 		'click:touch:delegate(#search_btn)': function(){
 			

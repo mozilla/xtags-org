@@ -2,169 +2,169 @@
 {% extends "layout.html" %}
 
 {% block styles %}
-	<link rel="stylesheet" type="text/css" href="/elements/flipbox/flipbox.css"/>
-	<link rel="stylesheet" type="text/css" href="/elements/tabbox/tabbox.css"/>
-	<link rel="stylesheet" type="text/css" href="/elements/modal/modal.css"/>
-	<link rel="stylesheet" type="text/css" href="/elements/map/map.css"/>
+  <link rel="stylesheet" type="text/css" href="/elements/flipbox/flipbox.css"/>
+  <link rel="stylesheet" type="text/css" href="/elements/tabbox/tabbox.css"/>
+  <link rel="stylesheet" type="text/css" href="/elements/modal/modal.css"/>
+  <link rel="stylesheet" type="text/css" href="/elements/map/map.css"/>
 {% endblock %}
-	
+  
 {% block index %}
-		<div class="limit">
-						
-			<h1 class="tagline">X-Tag - The Custom Elements Polylib</h1>
-			
-			<div id="intro" class="block">
-					
-				<x-ribbon>What is X-Tag?</x-ribbon>
-				
-				<div id="intro_graphic">
-					
-					<div id="intro_logo" class="foo">
-						<span>&lt;</span>
-						<div></div>
-						<span>&gt;</span>
-					</div>
-					
-					<div class="intro_details" id="intro_webcomponents">
-						<img src="images/webcomponents.png" onload="introAnimation()" />
-					</div>
-					
-					<div class="intro_details" id="intro_browsers">
-						<img src="images/browsers.png" onload="introAnimation()" />
-					</div>
-				</div>
-				
-				<h2>
-					X-Tag is a small JavaScript library, created and supported by Mozilla, that brings 
-					Web Components Custom Element capabilities to all modern browsers.
-				</h2>
-				
-			</div>
-			
-			<div class="block">
-				<x-ribbon>Get the code</x-ribbon>
-				<div id="code_options" class="unlink">
-					<div>
-						<a id="download" href="https://github.com/mozilla/x-tag/archive/master.zip">
-							<img src="images/archive.png">
-							<div>
-								Download it
-								<span>8k compressed</span>
-							</div>
-						</a>
-					</div>
-					
-					<div>
-						<a id="fork" href="https://github.com/mozilla/x-tag">
-							<img src="images/github-logo.png">
-							<div>
-								Fork it
-								<span>on Github</span>
-							</div>
-						</a>
-					</div>
-					
-					<div>
-						<a id="registry_elements">
-							<img src="images/xtr.png">
-							<div>
-								Get tags
-								<span>view the Registry</span>
-							</div>
-						</a>
-					</div>
-				</div>
-			</div>
-			
-			<div id="intro_demos" class="block">
-				<x-ribbon>Razzle-Dazzle</x-ribbon>
-				
-				<dl>
-					<dt text="Panel"><button title="markup"></button><button title="example" selected></button></dt>
-					<dd id="panel_demo">
-						<div class="demo-view">
-							<p>
-								The modal element provides an simple, structural tag 
-								that for showing modaled content that auto-centers in 
-								response to dynamic changes to screen and content size.
-							</p>
-							<div>
-								<x-panel id="panel_demo_element" class="demo-element">Click to set this panel element's <code>src</code> attribute, it will fetch the specified content asynchronously.</x-panel>
-							</div>
-						</div>
-						
-						<div class="demo-markup">
-							<x-code-prism>
-								<x-panel src="/elements/demo/panel-content.html"></x-panel>
-							</x-code-prism>
-						</div>
-					</dd>
-					
-					<dt text="Modal"><button title="markup"></button><button title="example" selected></button></dt>
-					<dd id="modal_demo">
-						<div class="demo-view">
-							<p>
-								The modal element provides an simple, structural tag 
-								that for showing modaled content that auto-centers in 
-								response to dynamic changes to screen and content size.
-							</p>
-							
-							<div>
-								<table class="demo-element">
-									<td>
-										<button>Show Modal</button>
-									</td>
-								</table>
-							</div>
-						</div>
-						
-						<div class="demo-markup">
-							<x-code-prism>
-								<x-modal>
-									<h3>Modal Demo</h3>
-									<p>Hello, I'm an auto-magical modal, how do you do?</p>
-								</x-modal>
-							</x-code-prism>
-						</div>
-					</dd>
-					
-					<dt text="Map"><button title="markup"></button><button title="example" selected></button></dt>
-					<dd id="map_demo">
-						<div class="demo-view">
-							<p>
-								Leaflet maps is a popular, open alternative to Google maps
-								that has caught fire in the developer community. This custom map
-								tag  allows you to easily create live map elements declaritively.
-							</p>
-							
-							<div>
-								<x-map id="map_demo_element" class="demo-element" data-key="39d2b66f0d5d49dbb52a5b7ad87aea9b"></x-map>
-							</div>
-						</div>
-						
-						<div class="demo-markup">
-							<x-code-prism>
-								<x-map data-key="39d2b66f0d5d49dbb52a5b7ad87aea9b"></x-map>
-							</x-code-prism>
-						</div>
-					</dd>
-				</dl>
-			</div>
-			
-		</div>
-		
+    <div class="limit">
+            
+      <h1 class="tagline">X-Tag - The Custom Elements Polylib</h1>
+      
+      <div id="intro" class="block">
+          
+        <x-ribbon>What is X-Tag?</x-ribbon>
+        
+        <div id="intro_graphic">
+          
+          <div id="intro_logo" class="foo">
+            <span>&lt;</span>
+            <div></div>
+            <span>&gt;</span>
+          </div>
+          
+          <div class="intro_details" id="intro_webcomponents">
+            <img src="images/webcomponents.png" onload="introAnimation()" />
+          </div>
+          
+          <div class="intro_details" id="intro_browsers">
+            <img src="images/browsers.png" onload="introAnimation()" />
+          </div>
+        </div>
+        
+        <h2>
+          X-Tag is a small JavaScript library, created and supported by Mozilla, that brings 
+          Web Components Custom Element capabilities to all modern browsers.
+        </h2>
+        
+      </div>
+      
+      <div class="block">
+        <x-ribbon>Get the code</x-ribbon>
+        <div id="code_options" class="unlink">
+          <div>
+            <a id="download" href="https://github.com/mozilla/x-tag/archive/master.zip">
+              <img src="images/archive.png">
+              <div>
+                Download it
+                <span>8k compressed</span>
+              </div>
+            </a>
+          </div>
+          
+          <div>
+            <a id="fork" href="https://github.com/mozilla/x-tag">
+              <img src="images/github-logo.png">
+              <div>
+                Fork it
+                <span>on Github</span>
+              </div>
+            </a>
+          </div>
+          
+          <div>
+            <a id="registry_elements">
+              <img src="images/xtr.png">
+              <div>
+                Get tags
+                <span>view the Registry</span>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+      
+      <div id="intro_demos" class="block">
+        <x-ribbon>Razzle-Dazzle</x-ribbon>
+        
+        <dl>
+          <dt text="Panel"><button title="markup"></button><button title="example" selected></button></dt>
+          <dd id="panel_demo">
+            <div class="demo-view">
+              <p>
+                The modal element provides an simple, structural tag 
+                that for showing modaled content that auto-centers in 
+                response to dynamic changes to screen and content size.
+              </p>
+              <div>
+                <x-panel id="panel_demo_element" class="demo-element">Click to set this panel element's <code>src</code> attribute, it will fetch the specified content asynchronously.</x-panel>
+              </div>
+            </div>
+            
+            <div class="demo-markup">
+<x-code-prism language="markup">
+&lt;x-panel src=&quot;/elements/demo/panel-content.html&quot;&gt;&lt;/x-panel&gt;
+</x-code-prism>
+            </div>
+          </dd>
+          
+          <dt text="Modal"><button title="markup"></button><button title="example" selected></button></dt>
+          <dd id="modal_demo">
+            <div class="demo-view">
+              <p>
+                The modal element provides an simple, structural tag 
+                that for showing modaled content that auto-centers in 
+                response to dynamic changes to screen and content size.
+              </p>
+              
+              <div>
+                <table class="demo-element">
+                  <td>
+                    <button>Show Modal</button>
+                  </td>
+                </table>
+              </div>
+            </div>
+            
+            <div class="demo-markup">
+<x-code-prism language="markup">
+&lt;x-modal&gt;
+  &lt;h3&gt;Modal 2 Demo&lt;/h3&gt;
+  &lt;p&gt;Hello, I'm an auto-magical modal, how do you do?&lt;/p&gt;
+&lt;/x-modal&gt;
+</x-code-prism>
+            </div>
+          </dd>
+          
+          <dt text="Map"><button title="markup"></button><button title="example" selected></button></dt>
+          <dd id="map_demo">
+            <div class="demo-view">
+              <p>
+                Leaflet maps is a popular, open alternative to Google maps
+                that has caught fire in the developer community. This custom map
+                tag  allows you to easily create live map elements declaritively.
+              </p>
+              
+              <div>
+                <x-map id="map_demo_element" class="demo-element" data-key="39d2b66f0d5d49dbb52a5b7ad87aea9b"></x-map>
+              </div>
+            </div>
+            
+            <div class="demo-markup">
+<x-code-prism language="markup">
+&lt;x-map data-key=&quot;39d2b66f0d5d49dbb52a5b7ad87aea9b&quot;&gt;&lt;/x-map&gt;
+</x-code-prism>
+            </div>
+          </dd>
+        </dl>
+      </div>
+      
+    </div>
+    
 {% endblock %}
 
 {% block bodyEnd %}
-	<x-modal id="modal_demo_element" overlay hidden hide>
-		<div>
-			<h3>Modal Demo</h3>
-			<p>Hello, I'm an auto-magical modal, how do you do?</p>
-			<footer>
-				<button>Hide Modal</button>
-			</footer>
-		</div>
-	</x-modal>
+  <x-modal id="modal_demo_element" overlay hidden hide>
+    <div>
+      <h3>Modal Demo</h3>
+      <p>Hello, I'm an auto-magical modal, how do you do?</p>
+      <footer>
+        <button>Hide Modal</button>
+      </footer>
+    </div>
+  </x-modal>
 {% endblock %}
 
 {% block scripts %}
@@ -175,42 +175,42 @@
 <script type="text/javascript" src="/elements/map/map.js"></script>
 
 <script type="text/javascript">
-	xtag.addEvents(document, {
-		'click:touch:delegate(#intro_demos dt button)': function(e){
-			xtag.query(this.parentNode, 'button').forEach(function(el){
-				el.removeAttribute('selected');
-			});
-			this.setAttribute('selected', null);
-			this.parentNode.nextElementSibling.className = this.getAttribute('title');
-		},
-		'click:touch:delegate(#panel_demo_element)': function(e){
-			if (!this.src) this.src = 'elements/panel/demo/panel-content.html';
-			else {
-				this.src = 'elements/panel/demo/panel-content' + (this.src.indexOf('2') > -1 ? '.html' : '2.html');
-			}
-		},
-		'click:touch:delegate(#modal_demo table button)': function(){
-			if (this.className == '') {
-				this.className = 'showing';
-				this.innerHTML = 'Hide Modal';
-				document.querySelector('#modal_demo_element').removeAttribute('hide');
-			}
-			else {
-				this.className = '';
-				this.innerHTML = 'Show Modal';
-				document.querySelector('#modal_demo_element').setAttribute('hide', null);
-			}
-		},
-		'click:touch:delegate(#modal_demo_element button)': function(){
-			var button = document.querySelector('#modal_demo table button');
-			button.className = '';
-			button.innerHTML = 'Show Modal';
-			document.querySelector('#modal_demo_element').setAttribute('hide', null);
-		}
-	});
-	
-	xtag.addEvent(document.querySelector('#modal_demo'), 'overflow', function(e){ console.log('overflow'); });
-	xtag.addEvent(document.querySelector('#modal_demo'), 'underflow', function(e){ console.log('underflow'); });
+  xtag.addEvents(document, {
+    'click:touch:delegate(#intro_demos dt button)': function(e){
+      xtag.query(this.parentNode, 'button').forEach(function(el){
+        el.removeAttribute('selected');
+      });
+      this.setAttribute('selected', null);
+      this.parentNode.nextElementSibling.className = this.getAttribute('title');
+    },
+    'click:touch:delegate(#panel_demo_element)': function(e){
+      if (!this.src) this.src = 'elements/panel/demo/panel-content.html';
+      else {
+        this.src = 'elements/panel/demo/panel-content' + (this.src.indexOf('2') > -1 ? '.html' : '2.html');
+      }
+    },
+    'click:touch:delegate(#modal_demo table button)': function(){
+      if (this.className == '') {
+        this.className = 'showing';
+        this.innerHTML = 'Hide Modal';
+        document.querySelector('#modal_demo_element').removeAttribute('hide');
+      }
+      else {
+        this.className = '';
+        this.innerHTML = 'Show Modal';
+        document.querySelector('#modal_demo_element').setAttribute('hide', null);
+      }
+    },
+    'click:touch:delegate(#modal_demo_element button)': function(){
+      var button = document.querySelector('#modal_demo table button');
+      button.className = '';
+      button.innerHTML = 'Show Modal';
+      document.querySelector('#modal_demo_element').setAttribute('hide', null);
+    }
+  });
+  
+  xtag.addEvent(document.querySelector('#modal_demo'), 'overflow', function(e){ console.log('overflow'); });
+  xtag.addEvent(document.querySelector('#modal_demo'), 'underflow', function(e){ console.log('underflow'); });
 </script>
 
 {% endblock %}
