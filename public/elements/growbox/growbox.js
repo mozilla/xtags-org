@@ -19,6 +19,7 @@
 		};
 	
  	xtag.register('x-growbox', {
+ 		content: '<x-grow-wrap><x-grow-content><content></content></x-grow-wrap></x-grow-content>',
 		methods: {
 			matchDimensions: function(){
 				var wrap = this.firstElementChild;
