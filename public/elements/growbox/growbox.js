@@ -44,7 +44,6 @@
 	
 	xtag.register('x-grow-wrap', {
 		onUpgrade: function(){
-			console.log('upgrade');
 			createFlowElements(this);
 			if (this.parentNode.tagName == 'X-GROWBOX') this.parentNode.matchDimensions();
 		}

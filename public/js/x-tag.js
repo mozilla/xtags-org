@@ -112,14 +112,14 @@
   var flowEvent = function(type){
     var flow = type == 'over';
     return {
-	  base: 'OverflowEvent' in window ? 'overflowchanged' : type + 'flow',
-	  condition: function(event){
-	    return event.type == (type + 'flow') ||
-	            ((event.orient == 0 && event.horizontalOverflow == flow) || 
-	            (event.orient == 1 && event.verticalOverflow == flow) || 
-	            (event.orient == 2 && event.horizontalOverflow == flow && event.verticalOverflow == flow));
-	  }
-	}
+    base: 'OverflowEvent' in window ? 'overflowchanged' : type + 'flow',
+    condition: function(event){
+      return event.type == (type + 'flow') ||
+              ((event.orient == 0 && event.horizontalOverflow == flow) || 
+              (event.orient == 1 && event.verticalOverflow == flow) || 
+              (event.orient == 2 && event.horizontalOverflow == flow && event.verticalOverflow == flow));
+    }
+  }
   };
   
   var xtag = {
@@ -131,10 +131,10 @@
     mutation: win.MutationObserver || 
       win.WebKitMutationObserver || 
       win.MozMutationObserver,
-    _matchSelector: document.documentElement.matchesSelector ||
-      document.documentElement.mozMatchesSelector ||
-      document.documentElement.webkitMatchesSelector,
-	_register: document.register,
+    _matchSelector: doc.documentElement.matchesSelector ||
+      doc.documentElement.mozMatchesSelector ||
+      doc.documentElement.webkitMatchesSelector,
+  _register: doc.register,
     tagOptions: {
       content: '',
       mixins: [],
@@ -143,7 +143,7 @@
       getters: {},
       setters: {},
       onCreate: function(){},
-	  onUpgrade: function(){},
+      onUpgrade: function(){},
       onInsert: function(){}
     },
 
@@ -164,11 +164,8 @@
           'webkitTransitionEnd'
         ]
       },
-	  overflow: flowEvent('over'),
-	  underflow: flowEvent('under'),
-      tap: {
-	    base: 'ontouchend' in doc ? 'touchend' : 'mouseup'
-	  }
+      overflow: flowEvent('over'),
+      underflow: flowEvent('under'),
     },
     pseudos: {
       delegate: {
@@ -197,14 +194,16 @@
         }
       },
       touch: {
-        onAdd: function(pseudo, fn){
+        onAdd: function(pseudo, fn){          
           this.addEventListener(touchMap[pseudo.key.split(':')[0]], fn, false);
         },
         listener: function(pseudo, fn, args){
-          if (fn.touched && args[0].type.match('mouse')){
+          if (fn.touched){
             fn.touched = false;
           } else {
-            if (args[0].type.match('touch')) fn.touched = true;
+            if (args[0].type.match('touch')){ 
+              fn.touched = true;
+            }
             args.splice(args.length, 0, this);
             fn.apply(this, args);
           }
@@ -229,14 +228,11 @@
     * });
     */
     mixins: {
-      request: {
-        onInsert: function(){
-          this.src = this.getAttribute('src');
-        },
+      request: {        
         getters: {
-		  src: function(){
-		    return this.getAttribute('src');
-		  },
+          src: function(){            
+            return this.getAttribute('src');
+          },
           dataready: function(){
             return this.xtag.dataready;
           }
@@ -492,8 +488,8 @@
         xtag.addEvents(element, options.events);
         if (options.content) element.innerHTML = options.content;
         options.onCreate.call(element);
-		options.onUpgrade.call(element);
-		if (!xtag._register) xtag.fireEvent(element, 'elementupgrade');
+    options.onUpgrade.call(element);
+    if (!xtag._register) xtag.fireEvent(element, 'elementupgrade');
       }
     },
 
@@ -558,11 +554,9 @@
     applyPseudos: function(element, key, fn){
       var action = fn, onAdd = {};
       if (key.match(':')){
-
         var split = key.match(/(\w+(?:\([^\)]+\))?)/g);
         for (var i = split.length - 1; i > 0; i--) {
-
-          split[i].replace(/(\w*)(?:\(([^\)]*)\))?/, function(match, name, value){            
+          split[i].replace(/(\w*)(?:\(([^\)]*)\))?/, function(match, name, value){
             var lastPseudo = action,
             pseudo = xtag.pseudos[name],
             split = {
@@ -580,9 +574,7 @@
                 [split, lastPseudo, args]);
             }
           });
-
         }
-
         for (var z in onAdd){
           xtag.pseudos[z].onAdd.call(element, onAdd[z], action);
         }
@@ -682,20 +674,20 @@
       else if (req.abort) req.abort();
     },
 
-	parseEvent: function(type){
-		var pseudos = type.split(':'),
-		    key = pseudos.shift(),
-	        event = xtag.merge({
-	            base: key,
-	            pseudos: '',
-	            onAdd: function(){},
-	            onRemove: function(){},
-	            condition: function(){},
-			}, xtag.customEvents[key] || {});
-		event.type = key + (event.pseudos ? ':' + event.pseudos : '') + (pseudos ? ':' + pseudos.join(':') : '');
-		return event;
-	},
-	
+    parseEvent: function(type){
+      var pseudos = type.split(':'),
+          key = pseudos.shift(),
+          event = xtag.merge({
+              base: key,
+              pseudos: '',
+              onAdd: function(){},
+              onRemove: function(){},
+              condition: function(){},
+          }, xtag.customEvents[key] || {});
+      event.type = key + (event.pseudos.length ? ':' + event.pseudos : '') + (pseudos.length ? ':' + pseudos.join(':') : '');
+      return event;
+    },
+  
     addEvent: function(element, type, fn){
       var event = xtag.parseEvent(type),
         chained = xtag.applyPseudos(element, event.type, fn),
