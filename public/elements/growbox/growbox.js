@@ -32,7 +32,7 @@
 		},
 		events:{
 			'resize': function(e){
-				console.log(e);
+				
 			},
 			'overflow': function(){
 				this.matchDimensions();
