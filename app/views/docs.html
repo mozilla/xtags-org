@@ -15,7 +15,7 @@
     
 <x-code-prism language="javascript">
 xtag.register('accordion', {
-  onCreate: function(){
+  onUpgrade: function(){
     // fired once at the time a component 
     // is initially created or parsed
   },
@@ -71,16 +71,16 @@ xtag.register('superinput', {
     </dd>
     
     <dd>
-      <h4><code>onCreate</code><span>function</span></h4>
+      <h4><code>onUpgrade</code><span>function</span></h4>
       <p>
         Whenever a tag is recognized and parsed on load or generated using 
-        <code>document.createElement</code>, an onCreate function is called 
+        <code>document.createElement</code>, an onUpdate function is called 
         allowing you to modify the element before any other code is applied to it.
       </p>
 
 <x-code-prism language="javascript">
 xtag.register('superinput', {
-  onCreate: function(){
+  onUpgrade: function(){
     // superinputs begin life knowing they're super.
     this.value = 'super';
   }

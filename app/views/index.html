@@ -114,9 +114,11 @@
                     
                     <div>
                       <table class="demo-element">
-                        <td>
-                          <button>Show Modal</button>
-                        </td>
+                        <tr>
+                          <td>
+                            <button>Show Modal</button>
+                          </td>
+                        </tr>
                       </table>
                     </div>
                   </div>
@@ -215,9 +217,7 @@
       document.querySelector('#modal_demo_element').setAttribute('hide', null);
     }
   });
-  
-  xtag.addEvent(document.querySelector('#modal_demo'), 'overflow', function(e){ console.log('overflow'); });
-  xtag.addEvent(document.querySelector('#modal_demo'), 'underflow', function(e){ console.log('underflow'); });
+
 </script>
 
 {% endblock %}

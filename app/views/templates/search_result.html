@@ -23,7 +23,12 @@
 <script type="text/javascript">
 
 	document.addEventListener('DOMComponentsLoaded', function(){
-		document.getElementsByName('search-item')[0].renderer = function(elem, template, data){
+		
+		xtag.query(document, 'x-slide[name="registry"] > x-panel')[0].addEventListener('load', function(){
+			 xtag.fireEvent(document.getElementById('search_btn'), 'click');
+		});
+
+		document.querySelectorAll('x-template[name="search-item"]')[0].renderer = function(elem, template, data){
 			data.registry_path = data.repo.replace('https://github.com/','') + '/' + data.tag_name;
 			var tmpl = new nunjucks.Template(template);
 			return tmpl.render(data);

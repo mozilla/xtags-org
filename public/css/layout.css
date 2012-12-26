@@ -55,6 +55,7 @@ body
 	position: absolute;
 	top: 39px;
 	left: 0;
+	right: 0;
 	bottom: 0;
     width: 100%;
 }
