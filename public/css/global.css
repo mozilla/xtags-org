@@ -487,6 +487,22 @@ x-panel[src="/docs"] h4  span {
 	font-style: italic;
 }
 
+#browser_logos {
+
+}
+#browser_logos a {
+	margin-top: 10px;
+	display: inline-block;
+	width: 131px;
+	vertical-align: top;
+	text-decoration: none;
+	color: #222;
+	text-align: center;
+}
+#browser_logos a img{
+	float: left;
+}
+
 /* MEDIA QUERIES */
 
 @media all and (max-width: 450px) {

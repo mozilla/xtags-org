@@ -7,10 +7,9 @@
 		<title>Tabbox Demo - X-Tag</title>
 		
 		<link rel="stylesheet" type="text/css" href="../tabbox.css" />
-		<link rel="stylesheet" type="text/css" href="../../flipbox/flipbox.css" />
-		<script type="text/javascript" src="../x-tag.js"></script>
+		<script type="text/javascript" src="../../lib/x-tag/x-tag.js"></script>
 		<script type="text/javascript" src="../tabbox.js"></script>
-		<script type="text/javascript" src="../../flipbox/flipbox.js"></script>
+		
 		
 		<style>
 			#tabbox {
@@ -21,42 +20,35 @@
 	</head>
 	
 <body>
-<x-flipbox>
-	<x-card>
-		<div>
-			<x-tabbox id="tabbox">
-				<x-tabs>
-					<x-tab selected="true">Tab 1</x-tab>
-					<x-tab>Tab 2</x-tab>
-					<x-tab>Tab 3</x-tab>
-				</x-tabs>
-				
-				<x-tabpanels>
-					<x-tabpanel selected="true">
-						<p>
-							Tabboxes are great for showing users only the content they need to see, while providing users an easy way to access additional content on-demand.
-						</p>
-					</x-tabpanel>
-					
-					<x-tabpanel>
-						<p>
-							Examples of use-cases for tabboxes include: a set of step-wise directions, grouping like content elements together, or as a building block for a tabbed viewing interface in a mobile web app.
-						</p>
-					</x-tabpanel>
 
-					<x-tabpanel>
-						<p>
-							In short, tabboxes are pretty freaking cool, and when you pair them with CSS animations/transitions, you can do things with a few styles that used to take a ton of JavaScript and custom code.
-						</p>
-					</x-tabpanel>
-				</x-tabpanels>
-			</x-tabbox>
-		</div>
-		<div>
-			foo bar
-		</div>
-	</x-card>
-<x-flipbox>
+	<x-tabbox id="tabbox">
+		<x-tabs>
+			<x-tab selected="true">Tab 1</x-tab>
+			<x-tab>Tab 2</x-tab>
+			<x-tab>Tab 3</x-tab>
+		</x-tabs>
+		
+		<x-tabpanels>
+			<x-tabpanel selected="true">
+				<p>
+					Tabboxes are great for showing users only the content they need to see, while providing users an easy way to access additional content on-demand.
+				</p>
+			</x-tabpanel>
+			
+			<x-tabpanel>
+				<p>
+					Examples of use-cases for tabboxes include: a set of step-wise directions, grouping like content elements together, or as a building block for a tabbed viewing interface in a mobile web app.
+				</p>
+			</x-tabpanel>
+
+			<x-tabpanel>
+				<p>
+					In short, tabboxes are pretty freaking cool, and when you pair them with CSS animations/transitions, you can do things with a few styles that used to take a ton of JavaScript and custom code.
+				</p>
+			</x-tabpanel>
+		</x-tabpanels>
+	</x-tabbox>		
+		
 </body>
 
 <script type="text/javascript">
